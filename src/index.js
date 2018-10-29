@@ -1,19 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
-
 import './index.css';
-import App from './App';
+import GenericComponent from './components/generic_component';
 import * as serviceWorker from './serviceWorker';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
+// routes library has been installed, but is not implement in this starter.
+
+
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={GenericComponent} />
+      </Switch>
+    </BrowserRouter>
   </Provider>
   , document.getElementById('root'));
 
