@@ -1,6 +1,8 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -11,4 +13,120 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#app-container {
+  height: 100%;
+  width: 100%;
+}
+
+#navbar {
+  width: 100%;
+  height: 5%;
+  background: #4B79A1;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #283E51, #4B79A1);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #283E51, #4B79A1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  display: table; /* do we need this with position rel? */
+  position: relative;
+}
+
+#dropdown {
+  display: table-cell;
+  margin-right: 10px;
+  vertical-align: middle;
+  color: white;
+  position: absolute;
+  top: 25%;
+  right: 1%;
+
+}
+
+#navbar h3 {
+  display: table-cell;
+  vertical-align: middle;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  margin: 0px;
+  padding-left: 1%;
+
+}
+
+
+
+#profile-img {
+  height: 25px;
+  width: 25px;
+  border-radius: 15px;
+  margin: 5px 5px 0px 0px;
+
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* LOGIN PAGE CONTAINERS */
+#login-page {
+  height: 95%;
+  width: 100%;
+  display: flex;
+}
+
+#login-img {
+  height: 100%;
+  width: 42%;
+  position: relative;
+  overflow: hidden;
+}
+
+#login-img img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+
+}
+
+#login-panel {
+  height: 99.8%;
+  width: 57.8%;
+  margin: 0.1% 0.2%;
+  background-color: white;
+  border: 1px solid rgb(234,234,234);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+  border-radius: 2px;
+  position: relative;
+}
+
+
+/* DISCOVER PAGE CONTAINERS */
+
+#discover {
+  height: 94%;
+  width: 100%;
+  display: flex
+}
+
+#mapid {
+  height: 98%;
+  width: 70%;
+  margin: 1% 0.5%
+}
+
+#preview {
+  height: 98%;
+  width: 28%;
+  background-color: white;
+  border: 1px solid rgb(234,234,234);
+  margin: 1% 0.5%;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+  border-radius: 2px;
 }

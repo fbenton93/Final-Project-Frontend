@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history'
 
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
 import './index.css';
-import GenericComponent from './components/generic_component';
+import LoginSignupPage from './containers/login_signup_page'
+import GenericContainer from './containers/generic_container';
+import UserProfile from './containers/user_profile'
+import NavBar from './components/navbar'
 import * as serviceWorker from './serviceWorker';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -17,11 +21,16 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={GenericComponent} />
-      </Switch>
-    </BrowserRouter>
+    <Router history={history} >
+      <div id="app-container">
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={GenericContainer} />
+          <Route path="/user" component={UserProfile} />
+          <Route path="/login" component={LoginSignupPage} />
+        </Switch>
+      </div>
+    </Router>
   </Provider>
   , document.getElementById('root'));
 
