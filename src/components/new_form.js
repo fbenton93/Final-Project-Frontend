@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux'
 
 class PostsNew extends Component {
   renderField = (field) => {
@@ -15,9 +16,22 @@ class PostsNew extends Component {
       </div>
     )
   }
+  renderSlider = (field) => {
+    const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`
+    return (
+      <div className={className}>
+        <label>{field.label}</label>
+        <input className="form-control" type="range" {...field.input} />
+
+          <div className="text-help">
+            {field.meta.touched ? field.meta.error : ''}
+          </div>
+      </div>
+    )
+  }
 
   onSubmit = (values) => {
-    // place your action creator here for submitting a post to your backend
+    console.log(values)
   }
 
   render() {
@@ -27,6 +41,7 @@ class PostsNew extends Component {
         <Field name="title" label="Title" component={this.renderField} />
         <Field name="categories" label="Categories" component={this.renderField} />
         <Field name="content" label="Post Content" component={this.renderField} />
+        <Field name="rating" label="Rating" component={this.renderSlider} />
         <button type="submit" className="btn btn-priamry">Submit</button>
       </form>
     )
