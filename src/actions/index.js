@@ -11,3 +11,15 @@ export function genericAction({ data }) {
     payload: data
   }
 }
+
+export function postNewUser(userData,cb) {
+  const user = {user: {...userData}}
+
+  const postedUser = axios.post('http://localhost:3001/api/v1/users',user)
+  .then(() => cb())
+
+  return {
+    type: 'LOGINNEWUSER',
+    payload: postedUser
+  }
+}

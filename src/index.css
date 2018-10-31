@@ -75,36 +75,85 @@ code {
 #login-page {
   height: 95%;
   width: 100%;
-  display: flex;
-}
-
-#login-img {
-  height: 100%;
-  width: 42%;
   position: relative;
-  overflow: hidden;
+  background-image: url("./images/hans-ripa-688800-unsplash.jpg");
+  filter: blur(4px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#login-img img {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
 
-}
+
+
 
 #login-panel {
-  height: 99.8%;
-  width: 57.8%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 600px;
+  width: 400px;
   margin: 0.1% 0.2%;
   background-color: white;
   border: 1px solid rgb(234,234,234);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
   border-radius: 2px;
-  position: relative;
+  position: absolute;
+  text-align: center;
 }
+
+#login-panel i {
+  margin: 15px;
+  color: brown;
+}
+
+#login-form {
+  height: 60%;
+  width: 90%;
+  margin: 5%;
+  background-color: white;
+  border: 1px solid rgb(234,234,234);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+  border-radius: 2px;
+}
+
+.field-container {
+  margin: 10%;
+  width: 70%;
+}
+
+.input label {
+  display: block;
+  margin-right: 5px;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.input input {
+  display: block;
+}
+
+#signup-redirect {
+  margin: 5%;
+  height: 20%;
+  width: 90%;
+}
+
+#signup-redirect button {
+  margin-top: 10%;
+}
+
+#signup-page form {
+  margin: 10%;
+  height: 80%;
+  width: 80%;
+}
+
+form h1 {
+  text-align: center
+}
+
+
 
 
 /* DISCOVER PAGE CONTAINERS */
@@ -122,6 +171,7 @@ code {
 }
 
 #preview {
+  position: relative;
   height: 98%;
   width: 28%;
   background-color: white;
@@ -129,4 +179,11 @@ code {
   margin: 1% 0.5%;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
   border-radius: 2px;
+}
+
+#review-button {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+
 }

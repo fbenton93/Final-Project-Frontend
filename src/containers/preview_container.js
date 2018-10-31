@@ -7,7 +7,7 @@ export default class Preview extends React.Component {
 
     return (
       <div id="preview">
-        <Modal trigger={<Button>Review This Shop</Button>}>
+        <Modal trigger={<Button id="review-button">Review This Shop</Button>}>
           <Modal.Header>Write a Review</Modal.Header>
           <PostsNew />
         </Modal>

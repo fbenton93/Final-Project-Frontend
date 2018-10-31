@@ -1,10 +1,11 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import history from '../history'
+import { connect } from 'react-redux';
+import history from '../history';
 
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
 
   handleLogout = (event) => {
     history.push("/login")
@@ -12,10 +13,12 @@ export default class NavBar extends React.Component {
   }
 
   render() {
+    const userName = this.props.currentUser.name != '' ? this.props.currentUser.name : 'Please Login'
+    console.log(this.props.currentUser.name)
     return (
       <div id="navbar">
-        <h3>Bean There</h3>
-          <Dropdown id="dropdown" text="Username">
+        <h3><i className="fas fa-coffee"></i> Bean There?</h3>
+          <Dropdown id="dropdown" text={userName}>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/" text="Discover" />
               <Dropdown.Item as={Link} to="/user" text="Profile" />
@@ -27,3 +30,11 @@ export default class NavBar extends React.Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return (
+    {currentUser: state.currentUser}
+  )
+}
+
+export default connect(mapStateToProps)(NavBar)

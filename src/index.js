@@ -5,18 +5,19 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from './history'
 
 import { createStore, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
+import promise from 'redux-promise';
 import reducers from './reducers';
 import './index.css';
-import LoginSignupPage from './containers/login_signup_page'
+import SignupPage from './containers/signup_page'
+import LoginPage from './containers/login_page'
 import GenericContainer from './containers/generic_container';
 import UserProfile from './containers/user_profile'
 import NavBar from './components/navbar'
 import * as serviceWorker from './serviceWorker';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-// routes library has been installed, but is not implement in this starter.
+
 
 
 ReactDOM.render(
@@ -27,7 +28,8 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={GenericContainer} />
           <Route path="/user" component={UserProfile} />
-          <Route path="/login" component={LoginSignupPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignupPage} />
         </Switch>
       </div>
     </Router>

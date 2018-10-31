@@ -38,7 +38,7 @@ class GenericContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    genericProp: state.generic
+    static: state.static
   }
 }
 
