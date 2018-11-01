@@ -14,12 +14,21 @@ export function genericAction({ data }) {
 
 export function postNewUser(userData,cb) {
   const user = {user: {...userData}}
+  return (dispatch) => {
+    dispatch({type: 'LOADING_CURRENT_USER'});
+    return axios.post('http://localhost:3001/api/v1/users',user)
+    .then(currentUser => dispatch({type: 'LOGINNEWUSER', payload: currentUser}))
+    .then(() => cb())
+  }
 
-  const postedUser = axios.post('http://localhost:3001/api/v1/users',user)
-  .then(() => cb())
+}
+
+export function loginUser(credentials,cb) {
+  const user = {user: {...credentials}}
+  const current_user = axios.post('http://localhost:3001/api/v1/login')
 
   return {
-    type: 'LOGINNEWUSER',
-    payload: postedUser
+    type: 'LOGINUSER',
+    payload: user
   }
 }

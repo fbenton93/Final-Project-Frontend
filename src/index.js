@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history'
-
+import ReduxThunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import reducers from './reducers';
@@ -15,7 +15,7 @@ import UserProfile from './containers/user_profile'
 import NavBar from './components/navbar'
 import * as serviceWorker from './serviceWorker';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 
 
 

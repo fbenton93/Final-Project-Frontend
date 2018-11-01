@@ -13,8 +13,8 @@ class NavBar extends React.Component {
   }
 
   render() {
-    const userName = this.props.currentUser.name != '' ? this.props.currentUser.name : 'Please Login'
-    console.log(this.props.currentUser.name)
+    const userName = this.props.currentUser.user.username
+
     return (
       <div id="navbar">
         <h3><i className="fas fa-coffee"></i> Bean There?</h3>

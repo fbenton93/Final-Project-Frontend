@@ -1,13 +1,14 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
-import {connect} from 'react-redux'
+import { Field, reduxForm } from 'redux-form';
+import {connect} from 'react-redux';
+import {loginUser} from '../actions';
+import history from '../history';
 
 class LoginForm extends React.Component {
 
 
   onSubmit = (values) => {
-    console.log(values)
-    // use acrtion to login a user
+    this.props.loginUser(values,() => {history.push("/")})
   }
 
   renderTextField = (field) => {
@@ -62,5 +63,5 @@ export default reduxForm({
   validate: validate,
   form: "LoginForm"
 })(
-  connect(null,null)(LoginForm)
+  connect(null,{loginUser})(LoginForm)
 )

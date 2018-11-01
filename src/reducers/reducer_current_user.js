@@ -1,9 +1,11 @@
 // import an action case here if you wa to store type in a variable.
 
-export default function(state = {name: ''},action) {
+const defaultState = {jwt: '', user: {username: 'Login'}}
+
+export default function(state = defaultState,action) {
   switch(action.type) {
     case 'LOGINNEWUSER':
-      return action.payload
+      return action.payload.data
   }
 
   return state;
