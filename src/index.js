@@ -5,12 +5,11 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from './history'
 import ReduxThunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux';
-import promise from 'redux-promise';
 import reducers from './reducers';
 import './index.css';
 import SignupPage from './containers/signup_page'
 import LoginPage from './containers/login_page'
-import GenericContainer from './containers/generic_container';
+import MapContainer from './containers/map_container';
 import UserProfile from './containers/user_profile'
 import NavBar from './components/navbar'
 import * as serviceWorker from './serviceWorker';
@@ -26,7 +25,7 @@ ReactDOM.render(
       <div id="app-container">
         <NavBar />
         <Switch>
-          <Route exact path="/" component={GenericContainer} />
+          <Route exact path="/" component={MapContainer} />
           <Route path="/user" component={UserProfile} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />

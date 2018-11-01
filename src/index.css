@@ -185,5 +185,10 @@ form h1 {
   position: absolute;
   bottom: 5%;
   right: 10%;
+}
 
+#details-button {
+  position: absolute;
+  bottom: 5%;
+  left: 33%;
 }

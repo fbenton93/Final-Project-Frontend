@@ -1,16 +1,10 @@
 import axios from 'axios';
+import _ from 'lodash';
 // axios can be used to run requests.
 // with 'redux-promise', we stall action dispatching untill promsies are fulfilled
 
 const key = process.env.REACT_APP_GOOGLE_MAPS_KEY
-export function genericAction({ data }) {
-  // here you can make manipulations to the data that's being received.
 
-  return {
-    type: 'GENERIC',
-    payload: data
-  }
-}
 
 export function postNewUser(userData,cb) {
   const user = {user: {...userData}}
@@ -20,15 +14,33 @@ export function postNewUser(userData,cb) {
     .then(currentUser => dispatch({type: 'LOGINNEWUSER', payload: currentUser}))
     .then(() => cb())
   }
-
 }
 
 export function loginUser(credentials,cb) {
   const user = {user: {...credentials}}
-  const current_user = axios.post('http://localhost:3001/api/v1/login')
+  return (dispatch) => {
+    dispatch({type: 'LOADING_NEW_USER'});
+    return axios.post('http://localhost:3001/api/v1/login', user)
+    .then(currentUser => dispatch({type: 'LOGINUSER', payload: currentUser}))
+    .then(() => cb())
+  }
+}
 
-  return {
-    type: 'LOGINUSER',
-    payload: user
+export function fetchLocations() {
+  return (dispatch) => {
+    return axios.get('http://localhost:3001/api/v1/locations')
+    .then(response => {
+      dispatch({type: 'LOCATIONS_LOADED',payload: response.data.locations})
+    })
+  }
+}
+
+export function selectLocation(id) {
+  console.log(id)
+  return (dispatch) => {
+    return axios.get(`http://localhost:3001/api/v1/locations/${id}`)
+    .then(response => {
+      dispatch({type: 'SELECT_LOCATION',payload: response.data.location})
+    })
   }
 }

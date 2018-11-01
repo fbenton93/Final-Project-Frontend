@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field,reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {Segment,Grid,Label,Input,Button} from 'semantic-ui-react';
+import {Segment,Grid,Button} from 'semantic-ui-react';
 import { Slider } from 'react-semantic-ui-range';
 import { postNewUser } from '../actions'
 import history from '../history'
@@ -77,7 +77,7 @@ class SignupForm extends React.Component {
             <Segment>
               <div style={{height: "450px", width: "auto"}}>
                 <h1>Upload a photo!</h1>
-                <img src="" />
+                <img src="" alt="Your Profile Here" />
                 <Field name="profile_image_url" label="Upload a Profile Photo!" component={this.renderImageField} />
               </div>
             </Segment>

@@ -6,7 +6,9 @@ export default function(state = defaultState,action) {
   switch(action.type) {
     case 'LOGINNEWUSER':
       return action.payload.data
+    case 'LOGINUSER':
+      return action.payload.data
+    default:
+      return state
   }
-
-  return state;
 }
