@@ -1,7 +1,6 @@
 import React from 'react';
 
 const PreviewInfo = (props) => {
-  console.log(props)
   return (
     <div id="preview-content">
       <h2>{props.name}</h2>
