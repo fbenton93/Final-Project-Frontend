@@ -3,7 +3,9 @@ import _ from 'lodash';
 // axios can be used to run requests.
 // with 'redux-promise', we stall action dispatching untill promsies are fulfilled
 
-const key = process.env.REACT_APP_GOOGLE_MAPS_KEY
+const mapsKey = process.env.REACT_APP_GOOGLE_MAPS_KEY
+const cloudKey = process.env.REACT_APP_CLOUDINARY_KEY
+
 
 
 export function postNewUser(userData,cb) {
@@ -36,11 +38,10 @@ export function fetchLocations() {
 }
 
 export function selectLocation(id) {
-  console.log(id)
   return (dispatch) => {
     return axios.get(`http://localhost:3001/api/v1/locations/${id}`)
     .then(response => {
-      dispatch({type: 'SELECT_LOCATION',payload: response.data.location})
+      dispatch({type: 'SELECT_LOCATION',payload: response.data})
     })
   }
 }

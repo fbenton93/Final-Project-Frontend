@@ -52,10 +52,8 @@ class MapContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     locations: state.locations,
-    selectedLocation: state.selectedLocation
   }
 }
 
