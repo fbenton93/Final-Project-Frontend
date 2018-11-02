@@ -10,7 +10,6 @@ class Preview extends React.Component {
   render() {
     const { selectedLocation } = this.props
     const image_src = selectedLocation.reviews ? selectedLocation.reviews[0].img_url : ""
-    console.log(selectedLocation)
     return (
       <div id="preview">
         <div id="preview-img">
@@ -19,7 +18,7 @@ class Preview extends React.Component {
         <div id="preview-short">
           {selectedLocation.name ? <PreviewInfo name={selectedLocation.name} review={selectedLocation.reviews.slice(-1)[0]} /> : ""}
         </div>
-        {selectedLocation.reviews ? <><ReviewModal /><DetailsModal radar1={selectedLocation.averages} radar2={selectedLocation.regional_avg} reviews={selectedLocation.reviews}/></> : null }
+        {selectedLocation.reviews ? <><ReviewModal /><DetailsModal name={selectedLocation.name} radar1={selectedLocation.averages} radar2={selectedLocation.regional_avg} reviews={selectedLocation.reviews}/></> : null }
       </div>
     )
   }

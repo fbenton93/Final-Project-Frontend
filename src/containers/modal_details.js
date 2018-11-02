@@ -2,9 +2,9 @@ import React from 'react';
 import ReviewForm from './form_review';
 import { Modal, Button, Card } from 'semantic-ui-react';
 import {Radar} from 'react-chartjs-2';
+import Review from '../components/review_component'
 
 const DetailsModal = (props) => {
-    console.log(props,"here")
     const { radar1,radar2,reviews } = props
     const data = {
       labels: ['Busyness','Ambiance','Table Space','Noise','As a Study Spot','Friendliness','Value','Coffee Quality'],
@@ -48,22 +48,28 @@ const DetailsModal = (props) => {
       ]
     }
 
+    const locationImages = reviews.map((rev) => {
+      return <Card><img src={rev.img_url} /><p className="marker">submitted by {rev.user.username}</p></Card>
+    })
+
+    const reviewsRows = reviews.map((review) => {
+      return <Review key={review.id} data={review}></Review>
+    })
+
 
     return (
       <Modal trigger={<Button id="details-button">Analysis</Button>}>
-        <Modal.Header>Location Name</Modal.Header>
+        <Modal.Header>{props.name}</Modal.Header>
         <Modal.Content>
           <div id="scrolling-wrapper">
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p>submitted by (username)</p></Card>
+            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p className="marker">submitted by (username)</p></Card>
+            {locationImages}
           </div>
         </Modal.Content>
+        <Modal.Header>Summary</Modal.Header>
         <Modal.Content><Radar data={data}/></Modal.Content>
+        <Modal.Header>Reviews - Click for More Details</Modal.Header>
+        <Modal.Content>{reviewsRows}</Modal.Content>
       </Modal>
     )
 }

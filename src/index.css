@@ -195,14 +195,14 @@ form h1 {
   background: #000000;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  object-fit: cover;
 }
 
 #preview-img img {
-  max-width: 98%;
-  max-height: 98%;
-  margin: 1%;
-  align: center;
+  width: 94%;
+  height: 92%;
+  margin: 3% 4%;
+  border-radius: 4px;
 }
 
 #preview-img h2 {
@@ -214,6 +214,7 @@ form h1 {
   position: absolute;
   top: 55%;
   left: 48%;
+  overflow: auto;
   transform: translate(-50%,-50%);
   width: 96%;
   height: 30%;
@@ -255,10 +256,21 @@ form h1 {
 #scrolling-wrapper .card {
   display: inline-block;
   margin: 5% 10%;
-  color: rgba(64,64,64.0.9)
+  height: 400px;
+  width: 400px;
+  color: rgba(64,64,64.0.9);
 }
 
+
 #scrolling-wrapper img {
-  height: 100%;
-  width: 100%;
+  margin: 2%;
+  width: 96%;
+  height: 84%;
+  object-fit: cover;
+}
+
+.marker {
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Permanent Marker', cursive;
 }
