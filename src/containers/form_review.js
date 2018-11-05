@@ -5,9 +5,17 @@ import {Segment,Grid,Button} from 'semantic-ui-react';
 import {Slider} from 'react-semantic-ui-range';
 
 class ReviewForm extends React.Component {
+
+  onSubmit = (values) => {
+  }
+
+
+
+
+
   render() {
     return (
-      <div>Test</div>
+      <div>Form Here</div>
     )
   }
 }

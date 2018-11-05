@@ -16,9 +16,9 @@ class Preview extends React.Component {
           {selectedLocation.name ? <img src={image_src} /> : <h2>Explore Cafes By Selecting Markers</h2>}
         </div>
         <div id="preview-short">
-          {selectedLocation.name ? <PreviewInfo name={selectedLocation.name} review={selectedLocation.reviews.slice(-1)[0]} /> : ""}
+          {selectedLocation.name ? <PreviewInfo selectedLocation={selectedLocation} /> : ""}
         </div>
-        {selectedLocation.reviews ? <><ReviewModal /><DetailsModal name={selectedLocation.name} radar1={selectedLocation.averages} radar2={selectedLocation.regional_avg} reviews={selectedLocation.reviews}/></> : null }
+        {selectedLocation.reviews ? <><ReviewModal /><DetailsModal name={selectedLocation.name} radar1={selectedLocation.averages} radar2={selectedLocation.regional_avg} reviews={selectedLocation.reviews} traffic={selectedLocation.traffic}/></> : null }
       </div>
     )
   }

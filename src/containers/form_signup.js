@@ -42,12 +42,13 @@ class SignupForm extends React.Component {
   }
 
   renderRangeField = (field) => {
+    console.log(field)
     const settings = {
       start: 5,
       min: 0,
       max: 10,
       step: 0.5,
-      ...field.input
+      ...field.input,
     }
     return (
       <>
@@ -58,7 +59,6 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const {handleSubmit} = this.props
     // we should later refactor the below into a function that produces grid columns and their input
     return (
@@ -164,6 +164,7 @@ function validate(values) {
 
   return errors
 }
+
 
 
 export default reduxForm({

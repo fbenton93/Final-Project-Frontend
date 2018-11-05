@@ -1,12 +1,66 @@
 import React from 'react';
 import ReviewForm from './form_review';
 import { Modal, Button, Card } from 'semantic-ui-react';
-import {Radar} from 'react-chartjs-2';
+import {Radar, Line} from 'react-chartjs-2';
 import Review from '../components/review_component'
 
 const DetailsModal = (props) => {
-    const { radar1,radar2,reviews } = props
-    const data = {
+    console.log(props)
+    const { radar1,radar2,reviews,atmospheres,traffic} = props
+    const lineInputs = Object.keys(traffic).map((key) => traffic[key])
+    const lineData = {
+      labels: ["6:00AM",
+              "6:30AM",
+              "7:00AM",
+              "7:30AM",
+              "8:00AM",
+              "8:30AM",
+              "9:00AM",
+              "9:30AM",
+              "10:00AM",
+              "10:30AM",
+              "11:00AM",
+              "11:30AM",
+              "12:00PM",
+              "12:30PM",
+              "1:00PM",
+              "1:30PM",
+              "2:00PM",
+              "2:30PM",
+              "3:00PM",
+              "3:30PM",
+              "4:00PM",
+              "4:30PM",
+              "5:00PM",
+              "5:30PM",
+              "6:00PM"
+            ],
+            datasets: [
+              {
+                label: 'Traffic',
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: lineInputs
+              }
+            ]
+
+    }
+    const radarData = {
       labels: ['Busyness','Ambiance','Table Space','Noise','As a Study Spot','Friendliness','Value','Coffee Quality'],
       datasets: [
         {
@@ -67,7 +121,7 @@ const DetailsModal = (props) => {
           </div>
         </Modal.Content>
         <Modal.Header>Summary</Modal.Header>
-        <Modal.Content><Radar data={data}/></Modal.Content>
+        <Modal.Content><Radar data={radarData}/><br /><Line data={lineData} /></Modal.Content>
         <Modal.Header>Reviews - Click for More Details</Modal.Header>
         <Modal.Content>{reviewsRows}</Modal.Content>
       </Modal>
