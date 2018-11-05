@@ -16,7 +16,6 @@ class NewLocationContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (<div>{this.props.locationWasAdded ? <ReviewForm /> : <NewLocationForm />}</div>)
   }
 

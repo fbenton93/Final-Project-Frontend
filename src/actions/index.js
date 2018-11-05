@@ -53,10 +53,15 @@ export function postNewLocation(values,userId,provisionalLocation) {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedQuery}&key=${mapsKey}`)
     .then(response => {
       const geo = response.data.results[0].geometry.location
-      return axios.post('http://localhost:3001/api/v1/locations', {...provisionalLocation, lat: geo.lat, lng: geo.lng})
+      return axios.post('http://localhost:3001/api/v1/locations', {location: {...provisionalLocation, lat: geo.lat, lng: geo.lng}})
       .then(newLocation => {
-        dispatch({type: 'POST_NEW_LOCATION_COMPLETE', payload: newLocation })
-        return axios.post('http://localhost:3001/api/v1/reviews', {...values, location_id: newLocation.id, user_id: userId})
+        return axios.post('http://localhost:3001/api/v1/reviews', {review: {...values, location_id: newLocation.data.id, user_id: userId}})
+        .then(response => {
+          return axios.get('http://localhost:3001/api/v1/locations')
+          .then(response => {
+            dispatch({type: 'LOCATIONS_LOADED',payload: response.data.locations})
+          })
+        })
       })
     })
   }

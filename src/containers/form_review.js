@@ -3,13 +3,14 @@ import {Field,reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {Segment,Grid,Button} from 'semantic-ui-react';
 import {Slider} from 'react-semantic-ui-range';
-import { postNewLocation } from '../actions';
+import { postNewLocation,fetchLocations } from '../actions';
+import history from '../history'
 
 class ReviewForm extends React.Component {
 
   onSubmit = (values) => {
     this.props.postNewLocation(values,this.props.userId,this.props.provisionalLocation)
-    // find out how to close the modal
+    history.push('/')
   }
 
   renderImageField = (field) => {
@@ -17,6 +18,8 @@ class ReviewForm extends React.Component {
       <input type="file" name="profile_pic" accept="image/*" {...field.input} />
     )
   }
+
+
 
   renderTextField = (field) => {
     const inputClass = `ui input ${field.meta.touched && field.meta.error ? 'error' : ''}`
@@ -57,9 +60,20 @@ class ReviewForm extends React.Component {
 
   render() {
     const {handleSubmit} = this.props
+    // tomorrow. change time_visited to dropdown
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Grid padded>
+        <Grid.Column width={6}>
+          <Segment>
+            <Field name="img_url" label="Enter Image URL" component={this.renderTextField} />
+          </Segment>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Segment>
+            <Field name="time_visited" label="Time Visited" component={this.renderTextField} />
+          </Segment>
+        </Grid.Column>
           <Grid.Column width={6}>
             <Segment>
               <Field name="score_busyness" label="Busyness" color="red" component={this.renderRangeField} />
