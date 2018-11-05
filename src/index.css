@@ -43,7 +43,6 @@ code {
   position: absolute;
   top: 25%;
   right: 1%;
-
 }
 
 #navbar h3 {
@@ -53,9 +52,16 @@ code {
   color: white;
   margin: 0px;
   padding-left: 1%;
-
 }
 
+#new-location-button {
+  color: white;
+  background-color: rgba(0,0,0,0);
+  display: table-cell;
+  position: absolute;
+  right: 5%;
+  top: 3%;
+}
 
 
 #profile-img {
@@ -169,6 +175,7 @@ form h1 {
   width: 70%;
   margin: 1% 0.5%
 }
+
 
 #preview {
   position: relative;

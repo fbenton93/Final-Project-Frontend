@@ -2,6 +2,7 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import NewLocationModal from '../containers/modal_new_location'
 import history from '../history';
 
 
@@ -17,7 +18,8 @@ class NavBar extends React.Component {
 
     return (
       <div id="navbar">
-        <h3><i className="fas fa-coffee"></i> Bean There?</h3>
+          <h3><i className="fas fa-coffee"></i> Bean There?</h3>
+          <NewLocationModal />
           <Dropdown id="dropdown" text={userName}>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/" text="Discover" />

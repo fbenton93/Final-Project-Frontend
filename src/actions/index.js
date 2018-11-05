@@ -45,3 +45,22 @@ export function selectLocation(id) {
     })
   }
 }
+
+export function postNewLocation(values) {
+  return (dispatch) => {
+    console.log(values)
+  }
+}
+
+export function locationAdded(locationValues) {
+  return {
+    type: 'LOCATION_ADDED',
+    payload: locationValues
+  }
+}
+
+export function formReset() {
+  return {
+    type: 'FORM_RESET',
+  }
+}

@@ -35,18 +35,18 @@ class MapContainer extends React.Component {
   render() {
     const position = [40.710438, -73.956886]
     return (
-            <div id="discover">
-              <div id="mapid">
-                <Map center={position} zoom={13}>
-                  <TileLayer
-                  url='https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-                  attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                  />
-                  {this.renderMarkers()}
-                </Map>
+              <div id="discover">
+                <div id="mapid">
+                  <Map center={position} zoom={13}>
+                    <TileLayer
+                    url='https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+                    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                    />
+                    {this.renderMarkers()}
+                  </Map>
+                </div>
+                <Preview />
               </div>
-              <Preview />
-            </div>
           )
   }
 }

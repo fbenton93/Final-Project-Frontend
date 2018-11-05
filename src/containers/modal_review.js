@@ -1,5 +1,5 @@
 import React from 'react';
-import ReviewForm from './form_review'
+import NewLocationContainer from './new_location_container'
 import { Modal, Button } from 'semantic-ui-react'
 
 export default class ReviewModal extends React.Component {
@@ -8,7 +8,7 @@ export default class ReviewModal extends React.Component {
       <Modal trigger={<Button id="review-button">Review This Shop</Button>}>
         <Modal.Header>Write a Review</Modal.Header>
         <Modal.Content>
-          <ReviewForm />
+          <p>Under Construction</p>
         </Modal.Content>
       </Modal>
     )

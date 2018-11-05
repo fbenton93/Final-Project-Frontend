@@ -6,8 +6,6 @@ import {Slider} from 'react-semantic-ui-range';
 
 class ReviewForm extends React.Component {
 
-  onSubmit = (values) => {
-  }
 
 
 
@@ -15,7 +13,10 @@ class ReviewForm extends React.Component {
 
   render() {
     return (
-      <div>Form Here</div>
+      <div>
+      <h2>Review for {this.props.provisionalLocation.name}</h2>
+
+      </div>
     )
   }
 }
