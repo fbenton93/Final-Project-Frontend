@@ -3,9 +3,10 @@
 // submitting location info should trigger a state change that
 // renders the review form.
 import React from 'react';
-import ReviewForm from './form_review'
-import NewLocationForm from './form_new_location'
-import { connect } from 'react-redux'
+import ReviewForm from './form_review';
+import NewLocationForm from './form_new_location';
+import { connect } from 'react-redux';
+
 
 
 
@@ -15,7 +16,8 @@ class NewLocationContainer extends React.Component {
   }
 
   render() {
-    return (<div>{this.props.locationWasAdded ? <ReviewForm provisionalLocation={this.props.provisionalLocation} /> : <NewLocationForm />}</div>)
+    console.log(this.props)
+    return (<div>{this.props.locationWasAdded ? <ReviewForm /> : <NewLocationForm />}</div>)
   }
 
 

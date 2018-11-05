@@ -46,11 +46,23 @@ export function selectLocation(id) {
   }
 }
 
-export function postNewLocation(values) {
+export function postNewLocation(values,userId,provisionalLocation) {
+  const formattedQuery = `${provisionalLocation.lineOne.split(' ').join('+')}, +${provisionalLocation.lineTwo.split(' ').join('+')}`
+
   return (dispatch) => {
-    console.log(values)
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedQuery}&key=${mapsKey}`)
+    .then(response => {
+      const geo = response.data.results[0].geometry.location
+      return axios.post('http://localhost:3001/api/v1/locations', {...provisionalLocation, lat: geo.lat, lng: geo.lng})
+      .then(newLocation => {
+        dispatch({type: 'POST_NEW_LOCATION_COMPLETE', payload: newLocation })
+        return axios.post('http://localhost:3001/api/v1/reviews', {...values, location_id: newLocation.id, user_id: userId})
+      })
+    })
   }
 }
+
+
 
 export function locationAdded(locationValues) {
   return {
