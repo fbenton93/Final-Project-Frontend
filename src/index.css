@@ -149,10 +149,21 @@ code {
   margin-top: 10%;
 }
 
-#signup-page form {
-  margin: 10%;
-  height: 80%;
-  width: 80%;
+#signup-page {
+  height: 100%;
+  width: 100%;
+}
+
+#signup-form {
+  height: 90%;
+  width: 90%;
+  margin: 5%;
+}
+
+#signup-form .grid {
+  height: 100%;
+  width: 100%;
+  
 }
 
 form h1 {
@@ -326,4 +337,22 @@ form h1 {
   width: 80%;
   height: 50%;
   margin: 10%;
+  overflow: auto;
+}
+
+#profile-reviews img {
+  display: inline-block;
+  height: 80%;
+  width: 35%;
+  margin: 2.5%;
+  vertical-align: top;
+  border-radius: 3px;
+}
+
+#profile-reviews .review-description {
+  display: inline-block;
+  width: 55%;
+  height: auto;
+  margin: 2.5%;
+  vertical-align: top;
 }

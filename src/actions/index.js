@@ -4,7 +4,7 @@ import _ from 'lodash';
 // with 'redux-promise', we stall action dispatching untill promsies are fulfilled
 
 const mapsKey = process.env.REACT_APP_GOOGLE_MAPS_KEY
-const cloudKey = process.env.REACT_APP_CLOUDINARY_KEY
+const cloudKey = process.env.REACT_APP_CLOUDINARY_URL
 
 
 
