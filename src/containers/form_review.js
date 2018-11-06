@@ -3,14 +3,17 @@ import {Field,reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {Segment,Grid,Button} from 'semantic-ui-react';
 import {Slider} from 'react-semantic-ui-range';
-import { postNewLocation,fetchLocations } from '../actions';
+import { postNewLocation,fetchLocations, postNewReview } from '../actions';
 import history from '../history'
 
 class ReviewForm extends React.Component {
 
   onSubmit = (values) => {
-    this.props.postNewLocation(values,this.props.userId,this.props.provisionalLocation)
-    history.push('/')
+    if (this.props.provisionalLocation.id) {
+      this.props.postNewReview(values,this.props.userId,this.props.provisionalLocation.id)
+    } else {
+      this.props.postNewLocation(values,this.props.userId,this.props.provisionalLocation)
+    }
   }
 
   renderImageField = (field) => {
@@ -21,7 +24,10 @@ class ReviewForm extends React.Component {
 
   renderTextArea = (field) => {
     return (
-      
+      <>
+        <label>{field.label}</label>
+        <textarea name="written_content" {...field.input}></textarea>
+      </>
     )
   }
 
@@ -77,7 +83,12 @@ class ReviewForm extends React.Component {
         </Grid.Column>
         <Grid.Column width={6}>
           <Segment>
-            <Field name="img_url" label="Enter Image URL" component={this.renderTextField} />
+            <Field name="written_content" label="Your Written Review Here" component={this.renderTextArea} />
+          </Segment>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Segment>
+            <Field name="score_roast" label="Describe the Roast (i.e. 'too dark','just right', etc.)" component={this.renderTextField} />
           </Segment>
         </Grid.Column>
         <Grid.Column width={6}>
@@ -155,5 +166,5 @@ export default reduxForm({
   validate: validate,
   form: "ReviewForm"
 })(
-  connect(mapStateToProps,{postNewLocation})(ReviewForm)
+  connect(mapStateToProps,{postNewLocation,postNewReview})(ReviewForm)
 )

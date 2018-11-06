@@ -281,3 +281,49 @@ form h1 {
   font-size: 2em;
   font-family: 'Permanent Marker', cursive;
 }
+
+/* Profile Page */
+
+#profile-upper {
+  display: flex;
+}
+
+#profile-upper h1 {
+  display: inline-block;
+  margin: 2em 3em 3em 0em;
+}
+
+#profile-upper .card {
+  display: inline-block;
+  height: 400px;
+  width: 400px;
+  margin: 3em;
+}
+
+#profile-upper img {
+  height: inherit;
+  width: inherit;
+}
+
+#profile-reviews {
+  display: inline-block;
+  height: 400px;
+  width: 700px;
+  margin: 3em;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+  border-radius: 3px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* white-space: nowrap; */
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#profile-reviews .card {
+  width: 80%;
+  height: 50%;
+  margin: 10%;
+}

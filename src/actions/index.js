@@ -67,6 +67,22 @@ export function postNewLocation(values,userId,provisionalLocation) {
   }
 }
 
+export function postNewReview(values,userId,locationId) {
+  const reviewObj = {review: {...values,user_id: userId, location_id: locationId}}
+  return (dispatch) => {
+    axios.post('http://localhost:3001/api/v1/reviews',reviewObj)
+    .then(response => {
+      axios.get('http://localhost:3001/api/v1/locations')
+      .then(response => {
+        dispatch({
+          type: 'LOCATIONS_LOADED',
+          payload: response.data.locations
+        })
+      })
+    })
+  }
+}
+
 
 
 export function locationAdded(locationValues) {
@@ -80,4 +96,11 @@ export function formReset() {
   return {
     type: 'FORM_RESET',
   }
+}
+
+export function setProvisionalLocation(location) {
+  return ({
+    type: 'NEW_REVIEW',
+    payload: location
+  })
 }

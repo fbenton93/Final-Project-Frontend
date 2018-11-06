@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history'
-import ReduxThunk from 'redux-thunk'
+
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import './index.css';
@@ -12,9 +12,11 @@ import LoginPage from './containers/login_page'
 import MapContainer from './containers/map_container';
 import UserProfile from './containers/user_profile'
 import NavBar from './components/navbar'
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
 
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
+import { composeWithDevTools } from 'redux-devtools-extension'
+import ReduxThunk from 'redux-thunk'
+const createStoreWithMiddleware = composeWithDevTools(applyMiddleware(ReduxThunk))(createStore);
 
 
 
