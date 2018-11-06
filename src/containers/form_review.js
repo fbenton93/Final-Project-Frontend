@@ -19,6 +19,12 @@ class ReviewForm extends React.Component {
     )
   }
 
+  renderTextArea = (field) => {
+    return (
+      
+    )
+  }
+
 
 
   renderTextField = (field) => {
@@ -64,6 +70,16 @@ class ReviewForm extends React.Component {
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <Grid padded>
+        <Grid.Column width={6}>
+          <Segment>
+            <Field name="title" label="Title" component={this.renderTextField} />
+          </Segment>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Segment>
+            <Field name="img_url" label="Enter Image URL" component={this.renderTextField} />
+          </Segment>
+        </Grid.Column>
         <Grid.Column width={6}>
           <Segment>
             <Field name="img_url" label="Enter Image URL" component={this.renderTextField} />
