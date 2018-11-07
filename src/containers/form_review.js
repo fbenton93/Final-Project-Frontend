@@ -114,6 +114,7 @@ class ReviewForm extends React.Component {
       <option key="bitter" value="Bitter">Too Bitter</option>
       <option key="acidic" value="Acidic">Too Acidic</option>
       <option key="weak" value="Weak">Weak</option>
+      <option key="delicate" value="Delicate">Delicate</option>
       <option key="strong" value="Strong">Strong</option>
       <option key="tooStrong" value="Too Strong">Too Strong</option>
       </>

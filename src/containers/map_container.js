@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Map,Marker,TileLayer} from 'react-leaflet'
 import Preview from './preview_container'
+import NewLocationModal from './modal_new_location'
 import L from 'leaflet';
 import {fetchLocations,selectLocation} from '../actions'
 
@@ -44,6 +45,7 @@ class MapContainer extends React.Component {
                     />
                     {this.renderMarkers()}
                   </Map>
+                  <NewLocationModal />
                 </div>
                 <Preview />
               </div>
