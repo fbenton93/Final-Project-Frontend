@@ -104,7 +104,29 @@ class ReviewForm extends React.Component {
     )
   }
 
-  renderDropdown = () => {
+  renderRoastDropdown = () => {
+    return (
+      <>
+      <option key="under" value="Under Roasted">Under Roasted</option>
+      <option key="right" value="Just Right">Just Right</option>
+      <option key="over" value="Over Roasted">Over Roasted</option>
+      <option key="burnt" value="Burnt">Burnt</option>
+      <option key="bitter" value="Bitter">Too Bitter</option>
+      <option key="acidic" value="Acidic">Too Acidic</option>
+      <option key="weak" value="Weak">Weak</option>
+      <option key="strong" value="Strong">Strong</option>
+      <option key="tooStrong" value="Too Strong">Too Strong</option>
+      </>
+    )
+  }
+
+  handleRoastDropdown = (event) => {
+    this.setState({
+      score_roast: event.target.value
+    })
+  }
+
+  renderTimeDropdown = () => {
     let timeItems = []
     let i = 6.0
     while (i <= 18.0) {
@@ -114,7 +136,7 @@ class ReviewForm extends React.Component {
     return timeItems
   }
 
-  handleDropDown = (event) => {
+  handleTimeDropdown = (event) => {
     this.setState({
       review: {
         ...this.state.review,
@@ -146,7 +168,6 @@ class ReviewForm extends React.Component {
 
 
   render() {
-    console.log(this.props.reRenderModal)
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid padded>
@@ -163,14 +184,16 @@ class ReviewForm extends React.Component {
                 <TextArea name="written_content" onChange={this.handleInput} value={this.state.review.written_content} />
               </Segment>
               <Segment>
-                <label>Describe the Roast (2 words max):</label>
-                <Input name="score_roast" onChange={this.handleInput} value={this.state.review.score_roast} />
+                <label>Describe the Most Prominent Quality</label>
+                <select className="ui dropdown scrolling" onChange={this.handleRoastDropdown}>
+                  {this.renderRoastDropdown()}
+                </select>
               </Segment>
               <Segment>
                 <label>Time Visited:</label>
                 <br />
-                <select className="ui dropdown scrolling" onChange={this.handleDropDown}>
-                    {this.renderDropdown()}
+                <select className="ui dropdown scrolling" onChange={this.handleTimeDropdown}>
+                    {this.renderTimeDropdown()}
                 </select>
               </Segment>
             </Card>
