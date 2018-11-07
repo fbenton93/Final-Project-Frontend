@@ -163,7 +163,7 @@ code {
 #signup-form .grid {
   height: 100%;
   width: 100%;
-  
+
 }
 
 form h1 {
@@ -355,4 +355,19 @@ form h1 {
   height: auto;
   margin: 2.5%;
   vertical-align: top;
+}
+
+
+
+#success-img {
+  height: 180px;
+  width: 180px;
+  display: inline-block;
+  margin: 0% 10%;
+}
+
+.centered h1 {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 6em;
 }

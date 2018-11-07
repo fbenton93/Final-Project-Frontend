@@ -1,158 +1,226 @@
 import React from 'react';
-import {Field,reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {Segment,Grid,Button} from 'semantic-ui-react';
+import {Segment,Grid,Button,Input,TextArea,Card} from 'semantic-ui-react';
 import {Slider} from 'react-semantic-ui-range';
 import { postNewLocation,fetchLocations, postNewReview } from '../actions';
+import axios from 'axios'
 import history from '../history'
 
 class ReviewForm extends React.Component {
-
-  onSubmit = (values) => {
-    if (this.props.provisionalLocation.id) {
-      this.props.postNewReview(values,this.props.userId,this.props.provisionalLocation.id)
-    } else {
-      this.props.postNewLocation(values,this.props.userId,this.props.provisionalLocation)
+  constructor(props) {
+    super(props)
+    this.state = {
+      review: {
+        "title": '',
+        "written_content": '',
+        "score_roast": '',
+        "img_url": '',
+        "time_visited": null,
+        "score_busyness": 5,
+        "score_ambiance": 5,
+        "score_table_space": 5,
+        "score_noise_level": 5,
+        "score_studying": 5,
+        "score_friendliness": 5,
+        "score_value": 5,
+        "score_coffee_quality": 5
+      },
+      errors: false,
+      selectedFile: null
     }
   }
 
-  renderImageField = (field) => {
-    return (
-      <input type="file" name="profile_pic" accept="image/*" {...field.input} />
-    )
+  handleFileChange = (event) => {
+    this.setState({
+      selectedFile: event.target.files[0]
+    })
   }
 
-  renderTextArea = (field) => {
-    return (
-      <>
-        <label>{field.label}</label>
-        <textarea name="written_content" {...field.input}></textarea>
-      </>
-    )
+  handleUpload = (e) => {
+    const formData = new FormData()
+    formData.append('file',this.state.selectedFile)
+    formData.append('upload_preset', 'beanThere')
+    if (this.state.selectedFile){
+      axios.post('https://api.cloudinary.com/v1_1/fbenton93/image/upload', formData )
+      .then(response => {
+        this.setState({
+          review: {
+            ...this.state.review,
+            "img_url": response.data.url
+          }
+        })
+      })
+    }
+  }
+
+  handleInput = (event) => {
+    this.setState({
+      review: {
+        ...this.state.review,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    if (this.renderErrors().length > 0) {
+      this.setState({
+        errors: true
+      })
+    } else {
+      if (this.props.provisionalLocation.id) {
+        this.props.postNewReview(this.state.review,this.props.userId,this.props.provisionalLocation.id)
+      } else {
+        this.props.postNewLocation(this.state.review,this.props.userId,this.props.provisionalLocation)
+      }
+
+    }
   }
 
 
-
-  renderTextField = (field) => {
-    const inputClass = `ui input ${field.meta.touched && field.meta.error ? 'error' : ''}`
-    const errorClass = `${field.meta.touched && field.meta.error ? 'ui warning message' : ''}`
-    let type;
-    type = (field.entryType ? type = field.entryType : "text")
-    return (
-      <div className="field-container">
-        <div className={inputClass}>
-          <label>{field.label}</label>
-          <input type={type} {...field.input} />
-        </div>
-        <div className={errorClass}>
-          {field.meta.touched ? field.meta.error : ''}
-        </div>
-      </div>
-    )
-  }
-
-  renderRangeField = (field) => {
+  renderRange = (name,label,color,) => {
     const settings = {
-      start: 5,
+      start: this.state.review[name],
       min: 0,
       max: 10,
-      step: 0.5,
-      ...field.input,
+      step: 1,
+      onChange: (value) => {
+        this.setState({
+          review: {
+            ...this.state.review,
+            [name]: value
+          }
+        })
+      }
     }
     return (
-      <>
-      <label>{field.label}</label>
-      <Slider discrete color={field.color} settings={settings} />
-      </>
+      <Grid.Column width={6}>
+        <Segment>
+          <label>{label}</label>
+          <Slider color={color} settings={settings} />
+        </Segment>
+      </Grid.Column>
     )
+  }
+
+  renderDropdown = () => {
+    let timeItems = []
+    let i = 6.0
+    while (i <= 18.0) {
+      timeItems.push(<option key={i} value={i}>{`${floatsToTime(i)}`}</option>)
+      i += 0.5
+    }
+    return timeItems
+  }
+
+  handleDropDown = (event) => {
+    this.setState({
+      review: {
+        ...this.state.review,
+        time_visited: event.target.value
+      }
+    })
+  }
+
+
+
+  renderErrors = () => {
+    let errors = [];
+    if (this.state.review.title.length < 4) {
+      errors.push(<li>Enter a title with at least 4 characters</li>)
+    }
+    if (this.state.review.written_content.length < 15) {
+      errors.push(<li>A review requires a written comment of at leat 15 characters</li>)
+    }
+    if (this.state.review.score_roast.length < 1) {
+      errors.push(<li>A review requires a roast description</li>)
+    }
+    if (this.state.review.img_url.length < 1) {
+      errors.push(<li>This review requires a completed image upload</li>)
+    }
+    return errors;
   }
 
 
 
 
   render() {
-    const {handleSubmit} = this.props
-    // tomorrow. change time_visited to dropdown
+    console.log(this.props.reRenderModal)
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
+      <form onSubmit={this.handleSubmit}>
         <Grid padded>
-        <Grid.Column width={6}>
-          <Segment>
-            <Field name="title" label="Title" component={this.renderTextField} />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Segment>
-            <Field name="written_content" label="Your Written Review Here" component={this.renderTextArea} />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Segment>
-            <Field name="score_roast" label="Describe the Roast (i.e. 'too dark','just right', etc.)" component={this.renderTextField} />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Segment>
-            <Field name="img_url" label="Enter Image URL" component={this.renderTextField} />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Segment>
-            <Field name="time_visited" label="Time Visited" component={this.renderTextField} />
-          </Segment>
-        </Grid.Column>
           <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_busyness" label="Busyness" color="red" component={this.renderRangeField} />
-            </Segment>
+            <Card>
+              <Segment>
+                <label>Review Title:</label>
+                <br />
+                <Input name="title" type="text" onChange={this.handleInput} value={this.state.review.title} />
+              </Segment>
+              <Segment>
+                <label>Comment:</label>
+                <br />
+                <TextArea name="written_content" onChange={this.handleInput} value={this.state.review.written_content} />
+              </Segment>
+              <Segment>
+                <label>Describe the Roast (2 words max):</label>
+                <Input name="score_roast" onChange={this.handleInput} value={this.state.review.score_roast} />
+              </Segment>
+              <Segment>
+                <label>Time Visited:</label>
+                <br />
+                <select className="ui dropdown scrolling" onChange={this.handleDropDown}>
+                    {this.renderDropdown()}
+                </select>
+              </Segment>
+            </Card>
           </Grid.Column>
           <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_ambiance" label="Overall Ambiance" color="teal" component={this.renderRangeField} />
-            </Segment>
+            <Card style={{height: "450px", width: "auto"}}>
+              <h1>Upload a photo!</h1>
+              <input type="file" name="review-pic" accept="image/*" onChange={this.handleFileChange} />
+              <button onClick={this.handleUpload}>Upload</button>
+            </Card>
           </Grid.Column>
-          <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_table_space" label="Amount of Table Space" color="orange" component={this.renderRangeField} />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_noise_level" label="Noise Level" color="yellow" component={this.renderRangeField} />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_studying" label="Appropriateness for Studying" color="olive" component={this.renderRangeField} />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_friendliness" label="Friendliness of Staff" color="green" component={this.renderRangeField} />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_value" label="Value" color="teal" component={this.renderRangeField} />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <Segment>
-              <Field name="score_coffee_quality" label="Coffee Quality" color="teal" component={this.renderRangeField} />
-            </Segment>
-          </Grid.Column>
+          {this.renderRange("score_busyness","How busy was this location?","red")}
+          {this.renderRange("score_ambiance","Were you impressed by the ambiance?","orange")}
+          {this.renderRange("score_table_space","Was there little or a lot of table space?","teal")}
+          {this.renderRange("score_noise_level","How noisy was this location?","blue")}
+          {this.renderRange("score_studying","Is this an appropriate place to study?","green")}
+          {this.renderRange("score_friendliness","How friendly was the staff?","olive")}
+          {this.renderRange("score_value","Rate the value of this cafe.","yellow")}
+          {this.renderRange("score_coffee_quality","Rate the overall coffee quality.","red")}
         </Grid>
         <Button type="submit">Add New Location and Submit Review</Button>
+        {this.state.errors ? <Segment inverted color="red" tertiary><ul>{this.renderErrors()}</ul></Segment> : null}
       </form>
     )
   }
 }
 
-function validate() {
-  let errors = {}
 
-  return errors
+function floatsToTime(float) {
+  let halfOfDay = ''
+  if (float >= 12) {
+    halfOfDay = "PM"
+  } else {
+    halfOfDay = "AM"
+  }
+
+  let hours = Math.floor(float)
+  let minutes = ((float % 1) * 60)
+
+  if (minutes == 0) {
+    minutes = "00"
+  }
+  if (float >= 13) {
+    hours -= 12
+  }
+
+  return `${hours}:${minutes} ${halfOfDay}`
 }
+
+
 
 function mapStateToProps(state) {
   return {
@@ -162,9 +230,6 @@ function mapStateToProps(state) {
 }
 
 
-export default reduxForm({
-  validate: validate,
-  form: "ReviewForm"
-})(
-  connect(mapStateToProps,{postNewLocation,postNewReview})(ReviewForm)
-)
+
+
+export default connect(mapStateToProps,{postNewLocation,postNewReview})(ReviewForm)

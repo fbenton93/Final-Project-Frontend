@@ -1,67 +1,51 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Button,Segment,Input } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {loginUser} from '../actions';
 import history from '../history';
 
 class LoginForm extends React.Component {
-
-
-  onSubmit = (values) => {
-    this.props.loginUser(values,() => {history.push("/")})
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: ''
+    }
   }
 
-  renderTextField = (field) => {
-    const inputClass = `ui input ${field.meta.touched && field.meta.error ? 'error' : ''}`
-    const errorClass = `${field.meta.touched && field.meta.error ? 'ui warning message' : ''}`
-    return (
-      <div className="field-container">
-        <div className={inputClass}>
-          <label>{field.label}</label>
-          <input type="text" {...field.input} />
-        </div>
-        <div className={errorClass}>
-          {field.meta.touched ? field.meta.error : ''}
-        </div>
-      </div>
-    )
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.loginUser(this.state,() => {history.push("/")})
   }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+s
+
 
   render() {
-    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit)}>
-          <Field name="username" label="Username" component={this.renderTextField} />
-          <Field name="password" label="Password" component={this.renderTextField} />
-          <button type="submit" className="positive ui button">Login</button>
+      <form onSubmit={this.handleSubmit}>
+        <Segment style={{width: '80%', margin: '5% 10%'}}>
+          <label>Username</label>
+          <br />
+          <Input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
+        </Segment>
+        <Segment style={{width: '80%', margin: '5% 10%'}}>
+          <label>Password</label>
+          <br />
+          <Input type='password' name="password" value={this.state.password} onChange={this.handleChange} />
+        </Segment>
+
+        <Button type="submit">Login!</Button>
       </form>
     )
   }
 }
 
 
-
-
-
-
-
-
-function validate(values) {
-  const errors = {}
-  if (!values.username) {
-    errors.username = "Enter a username (min 6 chars)"
-  }
-  if (!values.password) {
-    errors.password = "Enter a password (min 6 chars)"
-  }
-  return errors
-}
-
-
-
-export default reduxForm({
-  validate: validate,
-  form: "LoginForm"
-})(
-  connect(null,{loginUser})(LoginForm)
-)
+export default connect(null,{loginUser})(LoginForm)

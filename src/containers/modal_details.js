@@ -5,7 +5,6 @@ import {Radar, Line} from 'react-chartjs-2';
 import Review from '../components/review_component'
 
 const DetailsModal = (props) => {
-    console.log(props)
     const { radar1,radar2,reviews,atmospheres,traffic} = props
     const lineInputs = Object.keys(traffic).map((key) => traffic[key])
     const lineData = {

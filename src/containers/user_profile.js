@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import SignupForm from './form_signup'
 
 
 class UserProfile extends React.Component {
@@ -33,7 +34,7 @@ class UserProfile extends React.Component {
         </div>
         <div id="profile-lower">
           <h1>User Prefrences</h1>
-
+            <SignupForm preferences={{value: true}} />
         </div>
       </div>
     )

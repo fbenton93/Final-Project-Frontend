@@ -11,26 +11,44 @@ import history from '../history'
 class SignupForm extends React.Component {
   constructor(props) {
     super(props)
-    // initialize for signup
-    this.state = {
-      user: {
-        "username": '',
-        "password": '',
-        "password_confirmation": '',
-        "profile_img_url": null,
-        "pref_busyness": 5,
-        "pref_noise_level": 5,
-        "pref_ambiance": 5,
-        "pref_coffee_quality": 5,
-        "pref_light_roast": 5,
-        "pef_medium_roast": 5,
-        "pref_dark_roast": 5,
-        "pref_table_space": 5,
-        "pref_studying": 5
-      },
-      errors: false,
-      selectedFile: null
+    if (this.props.preferences) {
+      const { user } = this.props.currentUser
+      this.state = {
+        user: {
+          "pref_busyness": user.pref_busyness,
+          "pref_noise_level": user.pref_noise_level,
+          "pref_ambiance": user.pref_ambiance,
+          "pref_coffee_quality": user.pref_coffee_quality,
+          "pref_light_roast": user.pref_light_roast,
+          "pref_medium_roast": user.pref_medium_roast,
+          "pref_dark_roast": user.pref_dark_roast,
+          "pref_table_space": user.pref_table_space,
+          "pref_studying": user.pref_studying
+        }
+      }
+    } else {
+      this.state = {
+        user: {
+          "username": '',
+          "password": '',
+          "password_confirmation": '',
+          "profile_img_url": null,
+          "pref_busyness": 5,
+          "pref_noise_level": 5,
+          "pref_ambiance": 5,
+          "pref_coffee_quality": 5,
+          "pref_light_roast": 5,
+          "pref_medium_roast": 5,
+          "pref_dark_roast": 5,
+          "pref_table_space": 5,
+          "pref_studying": 5
+        },
+        errors: false,
+        selectedFile: null
+      }
     }
+    // initialize for signup
+
   }
 
   handleUpload = (e) => {
@@ -78,10 +96,10 @@ class SignupForm extends React.Component {
 
   renderRange = (name,label,color,) => {
     const settings = {
-      start: 5,
+      start: this.state.user[name],
       min: 0,
       max: 10,
-      step: 0.5,
+      step: 1,
       onChange: (value) => {
         this.setState({
           user: {
@@ -118,10 +136,9 @@ class SignupForm extends React.Component {
     return errors
   }
 
-  render() {
+  renderSignup = () => {
     return (
-      <form id="signup-form" onSubmit={this.handleSubmit}>
-        <Grid padded>
+      <Grid padded>
         <Grid.Column width={6}>
           <Card style={{height: "450px", width: "auto"}}>
             <Segment style={{width: "80%", margin: "15% 10% 5% 10%"}}>
@@ -149,9 +166,15 @@ class SignupForm extends React.Component {
               <button onClick={this.handleUpload}>Upload</button>
           </Card>
         </Grid.Column>
-        <h2>Indicate Preferences on the Sliders Below (Default: 50%)</h2>
+      </Grid>
+    )
+  }
 
-        </Grid>
+  render() {
+    return (
+      <form id="signup-form" onSubmit={this.handleSubmit}>
+        {this.props.preferences ? null : this.renderSignup()}
+        <h2>Indicate Preferences on the Sliders Below</h2>
         <Grid padded>
           {this.renderRange("pref_busyness","Preferred Busyness","red")}
           {this.renderRange("pref_noise_level","Preferred Noisiness","teal")}
@@ -171,4 +194,10 @@ class SignupForm extends React.Component {
   }
 }
 
-export default connect(null,{postNewUser})(SignupForm)
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+export default connect(mapStateToProps,{postNewUser})(SignupForm)
