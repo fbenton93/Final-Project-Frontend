@@ -1,31 +1,38 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import { logoutUser } from '../actions/user'
 import { connect } from 'react-redux';
-import history from '../history';
+
 
 
 class NavBar extends React.Component {
 
   handleLogout = (event) => {
-    history.push("/login")
-    // need additional functionality for logout
+    this.props.logoutUser();
+  }
+
+  renderDropdown = () => {
+    const userName = this.props.currentUser.user.username
+    return (
+      <Dropdown id="dropdown" text={userName}>
+        <Dropdown.Menu>
+          <Dropdown.Item as={NavLink} to="/" text="Discover" />
+          <Dropdown.Item as={NavLink} to="/user" text="Profile" />
+          <Dropdown.Divider />
+          <Dropdown.Item as={NavLink} to="/login" onClick={this.handleLogout} text="Logout" />
+        </Dropdown.Menu>
+      </Dropdown>
+    )
   }
 
   render() {
-    const userName = this.props.currentUser.user.username
 
+    console.log(this.props)
     return (
       <div id="navbar">
           <h3><i className="fas fa-coffee"></i> Bean There?</h3>
-          <Dropdown id="dropdown" text={userName}>
-            <Dropdown.Menu>
-              <Dropdown.Item as={Link} to="/" text="Discover" />
-              <Dropdown.Item as={Link} to="/user" text="Profile" />
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={this.handleLogout} text="Logout" />
-            </Dropdown.Menu>
-          </Dropdown>
+          {this.props.currentUser.user.id ? this.renderDropdown() : null }
       </div>
     )
   }
@@ -37,4 +44,4 @@ function mapStateToProps(state) {
   )
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default connect(mapStateToProps,{logoutUser})(NavBar)

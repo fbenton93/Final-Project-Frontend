@@ -6,6 +6,8 @@ import NewLocationModal from './modal_new_location'
 import L from 'leaflet';
 import {fetchLocations,selectLocation} from '../actions'
 
+import reqAuth from '../HOC/wrapper_auth'
+
 
 
 
@@ -59,4 +61,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {fetchLocations,selectLocation})(MapContainer)
+export default reqAuth(connect(mapStateToProps, {fetchLocations,selectLocation})(MapContainer))

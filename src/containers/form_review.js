@@ -4,7 +4,7 @@ import {Segment,Grid,Button,Input,TextArea,Card} from 'semantic-ui-react';
 import {Slider} from 'react-semantic-ui-range';
 import { postNewLocation,fetchLocations, postNewReview } from '../actions';
 import axios from 'axios'
-import history from '../history'
+
 
 class ReviewForm extends React.Component {
   constructor(props) {

@@ -3,6 +3,8 @@ import { Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import SignupForm from './form_signup'
 
+import reqAuth from '../HOC/wrapper_auth'
+
 
 class UserProfile extends React.Component {
 
@@ -48,4 +50,4 @@ function mapStateToProps(state) {
   })
 }
 
-export default connect(mapStateToProps)(UserProfile)
+export default reqAuth(connect(mapStateToProps)(UserProfile))

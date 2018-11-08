@@ -1,5 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
+export * from './user'
 // axios can be used to run requests.
 // with 'redux-promise', we stall action dispatching untill promsies are fulfilled
 
@@ -8,25 +9,11 @@ const cloudKey = process.env.REACT_APP_CLOUDINARY_URL
 
 
 
-export function postNewUser(userData,cb) {
-  const user = {user: {...userData}}
-  return (dispatch) => {
-    dispatch({type: 'LOADING_CURRENT_USER'});
-    return axios.post('http://localhost:3001/api/v1/users',user)
-    .then(currentUser => dispatch({type: 'LOGINNEWUSER', payload: currentUser}))
-    .then(() => cb())
-  }
-}
 
-export function loginUser(credentials,cb) {
-  const user = {user: {...credentials}}
-  return (dispatch) => {
-    dispatch({type: 'LOADING_NEW_USER'});
-    return axios.post('http://localhost:3001/api/v1/login', user)
-    .then(currentUser => dispatch({type: 'LOGINUSER', payload: currentUser}))
-    .then(() => cb())
-  }
-}
+
+
+
+
 
 export function fetchLocations() {
   return (dispatch) => {
@@ -89,12 +76,6 @@ export function locationAdded(locationValues) {
   return {
     type: 'LOCATION_ADDED',
     payload: locationValues
-  }
-}
-
-export function formReset() {
-  return {
-    type: 'FORM_RESET',
   }
 }
 

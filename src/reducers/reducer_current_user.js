@@ -8,6 +8,8 @@ export default function(state = defaultState,action) {
       return action.payload.data
     case 'LOGINUSER':
       return action.payload.data
+    case 'LOGOUT_USER':
+      return defaultState
     default:
       return state
   }

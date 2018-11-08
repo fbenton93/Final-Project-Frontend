@@ -2,8 +2,9 @@ import React from 'react';
 import LoginForm from './form_login'
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
+import { withRouter, Redirect } from 'react-router'
 
-export default class LoginSignupPage extends React.Component {
+class LoginSignupPage extends React.Component {
   render() {
     return (
       <>
@@ -15,7 +16,6 @@ export default class LoginSignupPage extends React.Component {
           <LoginForm />
         </div>
         <div id="signup-redirect">
-
           <Button color="orange" as={Link} to="/signup">Sign Up Now!</Button>
         </div>
       </div>
@@ -23,3 +23,5 @@ export default class LoginSignupPage extends React.Component {
     )
   }
 }
+
+export default withRouter(LoginSignupPage)

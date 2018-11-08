@@ -1,0 +1,43 @@
+import axios from 'axios';
+
+export function postNewUser(userData,cb) {
+  const user = {user: {...userData}}
+  return (dispatch) => {
+    dispatch({type: 'LOADING_CURRENT_USER'});
+    return axios.post('http://localhost:3001/api/v1/users',user)
+    .then(currentUser => dispatch({type: 'LOGINNEWUSER', payload: currentUser}))
+    .then(() => cb())
+  }
+}
+
+export function loginUser(credentials) {
+  const user = {user: {...credentials}}
+  return (dispatch) => {
+    dispatch({type: 'LOADING_NEW_USER'});
+    dispatch({type: 'AUTHENTICATING_USER'})
+    return axios.post('http://localhost:3001/api/v1/login', user)
+    .then(currentUser => {
+      localStorage.setItem('jwt',currentUser.data.jwt)
+      dispatch({type: 'LOGINUSER', payload: currentUser})
+    })
+    .then(() => dispatch({type: 'AUTHENTICATED_USER'}))
+  }
+}
+
+export function fetchCurrentUser() {
+  return (dispatch) => {
+    dispatch({type: 'AUTHENTICATING_USER'})
+    axios.get('http://localhost:3001/api/v1/profile', { headers: {'Authorization': `Bearer ${localStorage.getItem('jwt')}`}})
+    .then(response => {
+      debugger
+      dispatch({type: 'LOGINUSER', payload: response.data})
+    })
+  }
+}
+
+export function logoutUser() {
+  return (dispatch) => {
+    localStorage.removeItem('jwt')
+    dispatch({type: 'LOGOUT_USER'})
+  }
+}
