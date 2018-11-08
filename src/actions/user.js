@@ -28,9 +28,9 @@ export function fetchCurrentUser() {
   return (dispatch) => {
     dispatch({type: 'AUTHENTICATING_USER'})
     axios.get('http://localhost:3001/api/v1/profile', { headers: {'Authorization': `Bearer ${localStorage.getItem('jwt')}`}})
-    .then(response => {
-      debugger
-      dispatch({type: 'LOGINUSER', payload: response.data})
+    .then(currentUser => {
+
+      dispatch({type: 'LOGINUSER', payload: currentUser})
     })
   }
 }
