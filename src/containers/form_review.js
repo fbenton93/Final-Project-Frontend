@@ -162,6 +162,9 @@ class ReviewForm extends React.Component {
     if (this.state.review.img_url.length < 1) {
       errors.push(<li>This review requires a completed image upload</li>)
     }
+    if (!this.state.review.time_visited) {
+      errors.push(<li>Enter the approximate time of your visit</li>)
+    }
     return errors;
   }
 
@@ -169,28 +172,25 @@ class ReviewForm extends React.Component {
 
 
   render() {
+    const inputStyles= {width: "90%", height: "auto", margin: "5%"}
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid padded>
           <Grid.Column width={6}>
-            <Card>
-              <Segment>
+            <Card style={{height: "450px", width: "auto"}}>
+              <Segment style={inputStyles}>
                 <label>Review Title:</label>
                 <br />
                 <Input name="title" type="text" onChange={this.handleInput} value={this.state.review.title} />
               </Segment>
-              <Segment>
-                <label>Comment:</label>
-                <br />
-                <TextArea name="written_content" onChange={this.handleInput} value={this.state.review.written_content} />
-              </Segment>
-              <Segment>
+              <Segment style={inputStyles}>
                 <label>Describe the Most Prominent Quality</label>
+                <br />
                 <select className="ui dropdown scrolling" onChange={this.handleRoastDropdown}>
                   {this.renderRoastDropdown()}
                 </select>
               </Segment>
-              <Segment>
+              <Segment style={inputStyles}>
                 <label>Time Visited:</label>
                 <br />
                 <select className="ui dropdown scrolling" onChange={this.handleTimeDropdown}>
@@ -201,10 +201,18 @@ class ReviewForm extends React.Component {
           </Grid.Column>
           <Grid.Column width={6}>
             <Card style={{height: "450px", width: "auto"}}>
-              <h1>Upload a photo!</h1>
-              <input type="file" name="review-pic" accept="image/*" onChange={this.handleFileChange} />
-              <button onClick={this.handleUpload}>Upload</button>
+              <h1>{this.state.review.img_url == '' ? 'Upload an Image' : "Image Uploaded!" }</h1>
+              {this.state.review.img_url !== '' ? <img src={this.state.review.img_url} /> : null}
+              <Input style={inputStyles} type="file" name="review-pic" accept="image/*" onChange={this.handleFileChange} />
+              <Button style={{width: "30%", margin: "5%"}} primary onClick={this.handleUpload}>Upload</Button>
             </Card>
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <Segment>
+              <label>Comment:</label>
+              <br />
+              <TextArea style={{width: '100%', maxWidth: '100%'}}name="written_content" onChange={this.handleInput} value={this.state.review.written_content} />
+            </Segment>
           </Grid.Column>
           {this.renderRange("score_busyness","How busy was this location?","red")}
           {this.renderRange("score_ambiance","Were you impressed by the ambiance?","orange")}
