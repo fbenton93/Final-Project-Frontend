@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Redirect } from 'react-router'
 import {Segment,Grid,Button,Card} from 'semantic-ui-react';
 import { Slider } from 'react-semantic-ui-range';
 import { postNewUser } from '../actions'
@@ -24,7 +25,8 @@ class SignupForm extends React.Component {
           "pref_dark_roast": user.pref_dark_roast,
           "pref_table_space": user.pref_table_space,
           "pref_studying": user.pref_studying
-        }
+        },
+        didSubmit: false
       }
     } else {
       this.state = {
@@ -44,7 +46,8 @@ class SignupForm extends React.Component {
           "pref_studying": 5
         },
         errors: false,
-        selectedFile: null
+        selectedFile: null,
+        didSubmit: false
       }
     }
     // initialize for signup
@@ -81,7 +84,10 @@ class SignupForm extends React.Component {
         errors: true
       })
     } else {
-      this.props.postNewUser(this.state.user,() => history.push('/'))
+      this.props.postNewUser(this.state.user)
+      this.setState({
+        didSubmit: true
+      })
     }
   }
 
@@ -171,7 +177,7 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    return (
+    return this.state.didSubmit ? <Redirect to="/profile" /> : (
       <form id="signup-form" onSubmit={this.handleSubmit}>
         {this.props.preferences ? null : this.renderSignup()}
         <h2>Indicate Preferences on the Sliders Below</h2>
@@ -179,7 +185,7 @@ class SignupForm extends React.Component {
           {this.renderRange("pref_busyness","Preferred Busyness","red")}
           {this.renderRange("pref_noise_level","Preferred Noisiness","teal")}
           {this.renderRange("pref_ambiance","How Important is Ambiance?","orange")}
-          {this.renderRange("pref_coffee_quality","How important is Coffee Qaulity?","yellow")}
+          {this.renderRange("pref_coffee_quality","How important is Coffee Quality?","yellow")}
           {this.renderRange("pref_light_roast","Light Roast Preference","olive")}
           {this.renderRange("pref_medium_roast","Medium Roast Preference","green")}
           {this.renderRange("pref_dark_roast","Dark Roast Preference","teal")}

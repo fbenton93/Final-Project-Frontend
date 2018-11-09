@@ -123,7 +123,11 @@ class ReviewForm extends React.Component {
 
   handleRoastDropdown = (event) => {
     this.setState({
-      score_roast: event.target.value
+      review: {
+        ...this.state.review,
+        score_roast: event.target.value
+      }
+
     })
   }
 

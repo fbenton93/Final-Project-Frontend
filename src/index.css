@@ -316,26 +316,38 @@ form h1 {
 
 #profile-upper h1 {
   display: inline-block;
-  margin: 2em 3em 3em 0em;
+  font-size: 4em;
+  margin-bottom: 0.5em;
 }
+
 
 #profile-upper .card {
-  display: inline-block;
-  height: 400px;
-  width: 400px;
-  margin: 3em;
+  width: 30%;
+  margin: 2em;
+  height: 600px;
 }
 
-#profile-upper img {
-  height: inherit;
-  width: inherit;
+
+
+.img-container {
+  display: block;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  margin: 2em;
+}
+
+.img-container img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #profile-reviews {
   display: inline-block;
-  height: 400px;
-  width: 700px;
-  margin: 3em;
+  height: 600px;
+  width: 60%;
+  margin: 2em;
   background-color: white;
   border: 1px solid black;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);

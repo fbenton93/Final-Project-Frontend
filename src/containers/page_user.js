@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import SignupForm from './form_signup'
+import ScoreCard from '../components/score_card'
 
 import reqAuth from '../HOC/wrapper_auth'
 
@@ -11,12 +12,8 @@ class UserProfile extends React.Component {
   renderReviews = () => {
     return this.props.user.reviews.map((review) => {
       return (
-        <Card>
-          <div className="review-description">
-            <h4>{review.title}</h4>
-            <p>{review.written_content}</p>
-          </div>
-          <img className="review-photo" src={review.img_url} />
+        <Card id="users-review">
+          <ScoreCard review={review} username={this.props.user.user.username} />
         </Card>
       )
     })
@@ -24,18 +21,19 @@ class UserProfile extends React.Component {
 
   render() {
     const {user} = this.props
-    console.log(user)
     return (
       <div id="profile-page">
         <div id="profile-upper">
-          <Card><img src={user.user.profile_img_url}/></Card>
-          <h1>{user.user.username}'s Profile</h1>
+          <Card>
+            <div className="img-container"><img src={user.user.profile_img_url}/></div>
+            <h1 className="marker">{user.user.username}</h1>
+          </Card>
           <div id="profile-reviews">
             {this.renderReviews()}
           </div>
         </div>
         <div id="profile-lower">
-          <h1>User Prefrences</h1>
+          <h1>User Preferences</h1>
             <SignupForm preferences={{value: true}} />
         </div>
       </div>

@@ -1,12 +1,14 @@
 import axios from 'axios';
 
-export function postNewUser(userData,cb) {
+export function postNewUser(userData) {
   const user = {user: {...userData}}
   return (dispatch) => {
     dispatch({type: 'LOADING_CURRENT_USER'});
     return axios.post('http://localhost:3001/api/v1/users',user)
-    .then(currentUser => dispatch({type: 'LOGINNEWUSER', payload: currentUser}))
-    .then(() => cb())
+    .then(currentUser => {
+      localStorage.setItem('jwt',currentUser.data.jwt)
+      dispatch({type: 'LOGIN_NEW_USER', payload: currentUser})
+    })
   }
 }
 
