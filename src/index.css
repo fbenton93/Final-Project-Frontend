@@ -1,3 +1,5 @@
+/* ############### UNIVERSAL START ################ */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -54,22 +56,11 @@ code {
   padding-left: 1%;
 }
 
+/* ############### UNIVERSAL END ################ */
 
 
-#profile-img {
-  height: 25px;
-  width: 25px;
-  border-radius: 15px;
-  margin: 5px 5px 0px 0px;
 
-}
-
-.leaflet-container {
-  height: 100%;
-  width: 100%;
-}
-
-/* LOGIN PAGE CONTAINERS */
+/* ################# LOGIN BEGIN ################ */
 #login-page {
   height: 95%;
   width: 100%;
@@ -141,6 +132,8 @@ code {
   margin-top: 10%;
 }
 
+/* ################# LOGIN END ################ */
+
 #signup-page {
   height: 100%;
   width: 100%;
@@ -165,7 +158,13 @@ form h1 {
 
 
 
-/* DISCOVER PAGE CONTAINERS */
+/* ########## DISCOVER/HOME PAGE BEGIN ########### */
+
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
 
 #discover {
   height: 94%;
@@ -275,6 +274,10 @@ form h1 {
   border-radius: 0px 0px 5px 5px;
 }
 
+
+
+/* ########## DISCOVER/HOME PAGE END ########### */
+
 #scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -308,7 +311,7 @@ form h1 {
   font-family: 'Permanent Marker', cursive;
 }
 
-/* Profile Page */
+/* ################ PROFILE PAGE START #################### */
 
 #profile-upper {
   display: flex;
@@ -325,6 +328,22 @@ form h1 {
   width: 30%;
   margin: 2em;
   height: 600px;
+}
+
+#profile-mid {
+  height: 10%;
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+  color: white;
+  border-radius: 7px;
+  width: 90%;
+  margin: 5% 5%;
+}
+
+#profile-lower {
+  display: grid;
 }
 
 
@@ -367,11 +386,11 @@ form h1 {
 
 
 
-/* ########### SCORECARD START ############## */
+    /* ########### SCORECARD START ############## */
 
 #profile-reviews {
   display: inline-block;
-  height: 600px;
+  height: 650px;
   width: 60%;
   margin: 2em;
   background-color: white;
@@ -404,6 +423,7 @@ form h1 {
   top: 10%;
   left: 9%;
   border-radius: 3px;
+  filter: grayscale(80%);
 }
 
 .score.marker {
@@ -411,10 +431,18 @@ form h1 {
   color: rgba(0,0,0,0.6)
 }
 
+#title-card {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+
+}
+
 #time-card {
   position: absolute;
-  top: 53%;
-  left: 17%;
+  top: 52.5%;
+  left: 16%;
+  font-family: courier;
 }
 
 #busy-card {
@@ -479,14 +507,16 @@ form h1 {
 
 #comment-container {
   position: absolute;
-  top: 20%;
+  top: 26%;
   left: 40%;
   font-size: .5em;
   width: 420px;
-  height: 160px;
+  height: 140px;
   overflow-y: auto;
 }
 
 
 
-/* ########### SCORECARD END ############## */
+    /* ########### SCORECARD END ############## */
+
+/* ################ PROFILE PAGE END #################### */

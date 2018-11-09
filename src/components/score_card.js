@@ -10,7 +10,8 @@ const ScoreCard = (props) => {
     <div id="comment-container">
       <p id="comment" className="score marker">{review.written_content}</p>
     </div>
-    <p id="time-card" className="score marker">{review.time_visited}</p>
+    <p id="title-card" className="score marker">{review.title}</p>
+    <p id="time-card" className="score marker">{floatsToTime(review.time_visited)}</p>
     <p id="busy-card" className="score marker">{review.score_busyness}</p>
     <p id="ambiance-card" className="score marker">{review.score_ambiance}</p>
     <p id="table-card" className="score marker">{review.score_table_space}</p>
@@ -23,6 +24,27 @@ const ScoreCard = (props) => {
     <p id="sig-card" className="score marker">{props.username}</p>
     </>
   )
+}
+
+function floatsToTime(float) {
+  let halfOfDay = ''
+  if (float >= 12) {
+    halfOfDay = "PM"
+  } else {
+    halfOfDay = "AM"
+  }
+
+  let hours = Math.floor(float)
+  let minutes = ((float % 1) * 60)
+
+  if (minutes == 0) {
+    minutes = "00"
+  }
+  if (float >= 13) {
+    hours -= 12
+  }
+
+  return `${hours}:${minutes} ${halfOfDay}`
 }
 
 export default ScoreCard

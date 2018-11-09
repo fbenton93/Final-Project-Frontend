@@ -32,8 +32,8 @@ class UserProfile extends React.Component {
             {this.renderReviews()}
           </div>
         </div>
+        <div id="profile-mid"><h1>User Preferences <i class="fas fa-chevron-down"></i></h1></div>
         <div id="profile-lower">
-          <h1>User Preferences</h1>
             <SignupForm preferences={{value: true}} />
         </div>
       </div>

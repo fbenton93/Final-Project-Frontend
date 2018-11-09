@@ -157,6 +157,9 @@ class ReviewForm extends React.Component {
     if (this.state.review.title.length < 4) {
       errors.push(<li>Enter a title with at least 4 characters</li>)
     }
+    if (this.state.review.title.length > 26) {
+      errors.push(<li>Title must be within 25 characters in length</li>)
+    }
     if (this.state.review.written_content.length < 15) {
       errors.push(<li>A review requires a written comment of at leat 15 characters</li>)
     }
