@@ -343,49 +343,6 @@ form h1 {
   max-height: 100%;
 }
 
-#profile-reviews {
-  display: inline-block;
-  height: 600px;
-  width: 60%;
-  margin: 2em;
-  background-color: white;
-  border: 1px solid black;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
-  border-radius: 3px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  /* white-space: nowrap; */
-  background: #000000;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-#profile-reviews .card {
-  width: 80%;
-  height: 50%;
-  margin: 10%;
-  overflow: auto;
-}
-
-#profile-reviews img {
-  display: inline-block;
-  height: 80%;
-  width: 35%;
-  margin: 2.5%;
-  vertical-align: top;
-  border-radius: 3px;
-}
-
-#profile-reviews .review-description {
-  display: inline-block;
-  width: 55%;
-  height: auto;
-  margin: 2.5%;
-  vertical-align: top;
-}
-
-
-
 #success-img {
   height: 180px;
   width: 180px;
@@ -405,3 +362,131 @@ form h1 {
   margin: 5% 10%;
   object-fit: cover;
 }
+
+
+
+
+
+/* ########### SCORECARD START ############## */
+
+#profile-reviews {
+  display: inline-block;
+  height: 600px;
+  width: 60%;
+  margin: 2em;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+  border-radius: 3px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* white-space: nowrap; */
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+#users-review {
+  background-image: url('./images/score_card_800px.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 900px !important;
+  height: 534px;
+  position: relative;
+}
+
+#location-card {
+  height: 220px;
+  width: 220px;
+  position: absolute;
+  top: 10%;
+  left: 9%;
+  border-radius: 3px;
+}
+
+.score.marker {
+  font-family: 'Permanent Marker', cursive;
+  color: rgba(0,0,0,0.6)
+}
+
+#time-card {
+  position: absolute;
+  top: 53%;
+  left: 17%;
+}
+
+#busy-card {
+  position: absolute;
+  top: 62%;
+  left: 24%;
+}
+
+#ambiance-card {
+  position: absolute;
+  top: 72%;
+  left: 24%;
+}
+
+#table-card {
+  position: absolute;
+  top: 82%;
+  left: 26%;
+}
+
+#noise-card {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+}
+
+#study-card {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+}
+
+#friend-card {
+  position: absolute;
+  top: 71%;
+  left: 56%;
+}
+
+#value-card {
+  position: absolute;
+  top: 53%;
+  left: 75%;
+}
+
+#quality-card {
+  position: absolute;
+  top: 62%;
+  left: 79%;
+}
+
+#roast-card {
+  position: absolute;
+  top: 71%;
+  left: 73%;
+}
+
+#sig-card {
+  position: absolute;
+  top: 82%;
+  left: 65%;
+}
+
+#comment-container {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  font-size: .5em;
+  width: 420px;
+  height: 160px;
+  overflow-y: auto;
+}
+
+
+
+/* ########### SCORECARD END ############## */
