@@ -24,7 +24,7 @@ class UserProfile extends React.Component {
     return (
       <div id="profile-page">
         <div id="profile-upper">
-          <Card>
+          <Card className="profile-card">
             <div className="img-container"><img src={user.user.profile_img_url}/></div>
             <h1 className="marker">{user.user.username}</h1>
           </Card>

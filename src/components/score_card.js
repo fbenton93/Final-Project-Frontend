@@ -11,6 +11,7 @@ const ScoreCard = (props) => {
       <p id="comment" className="score marker">{review.written_content}</p>
     </div>
     <p id="title-card" className="score marker">{review.title}</p>
+    <p id="location-name-card" className="score marker">{review.location_name}</p>
     <p id="time-card" className="score marker">{floatsToTime(review.time_visited)}</p>
     <p id="busy-card" className="score marker">{review.score_busyness}</p>
     <p id="ambiance-card" className="score marker">{review.score_ambiance}</p>

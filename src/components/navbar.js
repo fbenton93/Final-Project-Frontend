@@ -27,8 +27,6 @@ class NavBar extends React.Component {
   }
 
   render() {
-
-    console.log(this.props)
     return (
       <div id="navbar">
           <h3><i className="fas fa-coffee"></i> Bean There?</h3>

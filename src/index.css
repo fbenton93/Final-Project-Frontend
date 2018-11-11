@@ -183,7 +183,8 @@ form h1 {
  position: absolute;
  top: 10%;
  right: 32%;
- background-color: rgba(139,69,19,1);
+ background-image: url('./images/slate.png');
+ font-family: 'Robot', sans-serif;
  color: white;
 }
 
@@ -258,19 +259,25 @@ form h1 {
 
 #review-button {
   display: block;
-  width: 100%;
+  width: 400px;
   height: 50%;
-  color: white;
-  background-color: rgba(0,0,0,0.85);
+  color: rgba(255,255,255,0.7);
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  margin: auto;
+  background-image: url('./images/slate.png');
   border-radius: 5px 5px 0px 0px;
 }
 
 #details-button {
   display: block;
-  width: 100%;
+  width: 400px;
   height: 50%;
-  color: white;
-  background-color: rgba(139,69,19,0.8);
+  color: rgba(255,255,255,0.7);
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  margin: auto;
+  background-image: url('./images/espresso.png');
   border-radius: 0px 0px 5px 5px;
 }
 
@@ -328,6 +335,10 @@ form h1 {
   width: 30%;
   margin: 2em;
   height: 600px;
+}
+
+#profile-upper .card.profile-card {
+  margin: 4em;
 }
 
 #profile-mid {
@@ -436,6 +447,12 @@ form h1 {
   top: 8%;
   left: 50%;
 
+}
+
+#location-name-card {
+  position: absolute;
+  top: 15%;
+  left: 55%;
 }
 
 #time-card {
