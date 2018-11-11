@@ -43,7 +43,7 @@ s
             <Input type='password' name="password" value={this.state.password} onChange={this.handleChange} />
           </Segment>
 
-          <Button type="submit">Login!</Button>
+          <button type="submit">Login</button>
         </form>
       )
   }

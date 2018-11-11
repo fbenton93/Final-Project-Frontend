@@ -118,7 +118,7 @@ class SignupForm extends React.Component {
     return (
       <Grid.Column width={6}>
         <Segment>
-          <label>{label}</label>
+          <label>{label} (Val: {this.state.user[name]})</label>
           <Slider color={color} settings={settings} />
         </Segment>
       </Grid.Column>
@@ -144,7 +144,7 @@ class SignupForm extends React.Component {
 
   renderSignup = () => {
     return (
-      <Grid padded>
+      <Grid id="signup-grid">
         <Grid.Column width={6}>
           <Card style={{height: "450px", width: "auto"}}>
             <Segment style={{width: "80%", margin: "15% 10% 5% 10%"}}>
@@ -165,11 +165,13 @@ class SignupForm extends React.Component {
           </Card>
         </Grid.Column>
         <Grid.Column width={6}>
-          <Card style={{height: "450px", width: "auto"}}>
+          <Card id="img-upload-card" style={{height: "450px", width: "auto"}}>
               <h1>Upload a photo!</h1>
               {this.state.user.profile_img_url ? <img src={this.state.user.profile_img_url} style={{height:"60%", width: "60%",margin: "10% 20%"}} /> : null}
-              <input type="file" name="profile_pic" accept="image/*" onChange={this.handleFileChange} />
-              <button onClick={this.handleUpload}>Upload</button>
+              <div>
+                <input type="file" name="profile_pic" accept="image/*" onChange={this.handleFileChange} />
+                <button onClick={this.handleUpload}>Upload</button>
+              </div>
           </Card>
         </Grid.Column>
       </Grid>
@@ -177,6 +179,7 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    const submitMessage = this.props.preferences ? "Save Changes" : "Submit and Begin!" 
     return this.state.didSubmit ? <Redirect to="/profile" /> : (
       <form id="signup-form" onSubmit={this.handleSubmit}>
         {this.props.preferences ? null : this.renderSignup()}
@@ -191,8 +194,12 @@ class SignupForm extends React.Component {
           {this.renderRange("pref_dark_roast","Dark Roast Preference","teal")}
           {this.renderRange("pref_table_space","How much Table Space do You Need?","red")}
           {this.renderRange("pref_studying","How often are you looking to study at a shop?","orange")}
+          <Grid.Column width={12}>
+            <Segment id="grid-submit">
+              <button type="submit">{submitMessage}</button>
+            </Segment>
+          </Grid.Column>
         </Grid>
-        <Button type="submit">Submit and Begin!</Button>
         {this.state.errors ? <Segment inverted color="red" tertiary><ul>{this.renderErrors()}</ul></Segment> : null}
       </form>
 
