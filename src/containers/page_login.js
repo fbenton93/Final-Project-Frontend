@@ -10,7 +10,6 @@ class LoginSignupPage extends React.Component {
       <>
       <div id="login-page"></div>
       <div id="login-panel">
-        <i className="fas fa-coffee fa-4x"></i>
         <div id="login-form">
           <h1>Login</h1>
           <LoginForm />

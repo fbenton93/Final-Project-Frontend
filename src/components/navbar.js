@@ -29,7 +29,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div id="navbar">
-          <h3><i className="fas fa-coffee"></i> Bean There?</h3>
+           <h3><i className="fas fa-coffee"></i> Bean There?</h3>
           {this.props.currentUser.user.id ? this.renderDropdown() : null }
       </div>
     )

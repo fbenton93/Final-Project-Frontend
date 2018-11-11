@@ -83,8 +83,8 @@ code {
   height: 600px;
   width: 400px;
   margin: 0.1% 0.2%;
-  background-color: white;
-  border: 1px solid rgb(234,234,234);
+  background-color: rgba(0,0,0,0.5);
+  border: 1px rgba(0,0,0,0.5);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
   border-radius: 2px;
   position: absolute;
@@ -99,11 +99,16 @@ code {
 #login-form {
   height: 60%;
   width: 90%;
-  margin: 5%;
-  background-color: white;
-  border: 1px solid rgb(234,234,234);
+  margin: 15% 5%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: 1px solid rgba(234,234,234,0.3);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+#login-form .segment {
+  background-color: inherit;
 }
 
 .field-container {
