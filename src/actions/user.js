@@ -42,3 +42,10 @@ export function logoutUser() {
     dispatch({type: 'LOGOUT_USER'})
   }
 }
+
+export function updateUserPrefs(values,userId) {
+  return (dispatch) => {
+    axios.patch(`http://localhost:3001/api/v1/users/${userId}`, {user: {...values}}, {headers: {'Authorization': `Bearer ${localStorage.getItem('jwt')}`}})
+    .then(updatedUser => console.log(updatedUser))
+  }
+}

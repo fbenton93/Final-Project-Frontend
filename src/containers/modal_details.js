@@ -87,6 +87,8 @@ const DetailsModal = (props) => {
     })
 
 
+
+
     return (
       <Modal trigger={<Button id="details-button">Analysis</Button>}>
         <Modal.Header>{props.name}</Modal.Header>
@@ -108,5 +110,6 @@ const DetailsModal = (props) => {
       </Modal>
     )
 }
+
 
 export default DetailsModal

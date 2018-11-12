@@ -26,7 +26,7 @@ class ReviewModal extends React.Component {
 
   render() {
     return (
-      <Modal closeIcon trigger={<Button id="review-button" onClick={this.setProvisionalLocation}>Review This Shop</Button>}>
+      <Modal trigger={<Button id="review-button" onClick={this.setProvisionalLocation}>Review This Shop</Button>}>
         <Modal.Header>Write a Review</Modal.Header>
         <Modal.Content>
           {this.state.submitted ? <FormSuccess /> : <ReviewForm reRenderModal={this.reRenderModal} /> }

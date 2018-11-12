@@ -4,8 +4,9 @@ import { Redirect } from 'react-router'
 import {Segment,Grid,Button,Card} from 'semantic-ui-react';
 import { Slider } from 'react-semantic-ui-range';
 import { postNewUser } from '../actions'
+import { updateUserPrefs } from '../actions/user'
 import axios from 'axios'
-import history from '../history'
+
 
 
 
@@ -26,7 +27,9 @@ class SignupForm extends React.Component {
           "pref_table_space": user.pref_table_space,
           "pref_studying": user.pref_studying
         },
-        didSubmit: false
+        userId: user.id,
+        didSubmit: false,
+        didUpdate: false
       }
     } else {
       this.state = {
@@ -79,15 +82,23 @@ class SignupForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    if (this.renderErrors().length > 0) {
+    if (this.props.preferences) {
+      this.props.updateUserPrefs(this.state.user,this.state.userId)
       this.setState({
-        errors: true
+        didUpdate: true
       })
+      setTimeout(() => this.setState({didUpdate: false}), 10000)
     } else {
-      this.props.postNewUser(this.state.user)
-      this.setState({
-        didSubmit: true
-      })
+      if (this.renderErrors().length > 0) {
+        this.setState({
+          errors: true
+        })
+      } else {
+        this.props.postNewUser(this.state.user)
+        this.setState({
+          didSubmit: true
+        })
+      }
     }
   }
 
@@ -179,8 +190,9 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    const submitMessage = this.props.preferences ? "Save Changes" : "Submit and Begin!" 
-    return this.state.didSubmit ? <Redirect to="/profile" /> : (
+    const ifUpdated = this.state.didUpdate ? 'Changes Submitted' : 'Save Changes'
+    const submitMessage = this.props.preferences ? `${ifUpdated}` : "Submit and Begin!"
+    return this.state.didSubmit ? <Redirect to="/user" /> : (
       <form id="signup-form" onSubmit={this.handleSubmit}>
         {this.props.preferences ? null : this.renderSignup()}
         <h2>Indicate Preferences on the Sliders Below</h2>
@@ -213,4 +225,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps,{postNewUser})(SignupForm)
+export default connect(mapStateToProps,{postNewUser, updateUserPrefs})(SignupForm)

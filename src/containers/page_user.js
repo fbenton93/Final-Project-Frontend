@@ -32,7 +32,7 @@ class UserProfile extends React.Component {
             {this.renderReviews()}
           </div>
         </div>
-        <div id="profile-mid"><h1>User Preferences <i class="fas fa-chevron-down"></i></h1></div>
+        <a href="#signup-form"><div id="profile-mid"><h1>Click for User Preferences <i class="fas fa-chevron-down"></i></h1></div></a>
         <div id="profile-lower">
             <SignupForm preferences={{value: true}} />
         </div>
