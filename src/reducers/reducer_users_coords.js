@@ -6,6 +6,6 @@ export default function(state = defaultPosition,action) {
     case 'LOCATION_ACQUIRED':
       return action.payload
     default:
-      return defaultPosition
+      return state
   }
 }

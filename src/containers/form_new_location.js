@@ -1,5 +1,4 @@
 import React from 'react';
-import {Field,reduxForm} from 'redux-form'
 import { connect } from 'react-redux'
 import {Segment,Grid,Button,Input} from 'semantic-ui-react'
 import { locationAdded } from '../actions'
@@ -27,11 +26,36 @@ class NewLocationForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
 
+  fetchAddress = (e) => {
+    e.preventDefault()
+
+    this.reverseCoordinates(this.props.userCoords)
   }
 
   handleClick = () => {
     this.props.locationAdded(this.state)
+  }
+
+  reverseCoordinates = (coords) => {
+    let latLng = new window.google.maps.LatLng(coords.lat,coords.lng);
+    let geoCoder = new window.google.maps.Geocoder();
+    geoCoder.geocode({latLng}, (results,status) => {
+      if (status !== window.google.maps.GeocoderStatus.OK) {
+        alert(status)
+      } else {
+        let rawAddress = results[0].formatted_address
+        let lineOneComma = rawAddress.indexOf(',')
+        let lineTwoComma = rawAddress.lastIndexOf(',')
+        let lineOne = rawAddress.slice(0,lineOneComma)
+        let lineTwo = rawAddress.slice(lineOneComma + 2,lineTwoComma)
+        this.setState({
+          lineOne,
+          lineTwo
+        })
+      }
+    })
   }
 
   render() {
@@ -43,6 +67,11 @@ class NewLocationForm extends React.Component {
             <Segment>
               <h3>Enter Shop Name (i.e. "Midtown Cafe")</h3>
               <Input name="name" value={this.state.name} onChange={this.handleChange}></Input>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={16}>
+            <Segment>
+              <Button style={{height: '100%', width: '100%'}} onClick={this.fetchAddress}>Guess My Location</Button>
             </Segment>
           </Grid.Column>
           <Grid.Column width={8}>
@@ -65,14 +94,14 @@ class NewLocationForm extends React.Component {
   }
 }
 
-function validate(values) {
-  const errors = {}
-  return errors
+function mapStateToProps(state) {
+  return {
+    userCoords: state.userCoords
+  }
 }
 
-export default reduxForm({
-  validate: validate,
-  form: "NewLocationForm"
-})(
-  connect(null,{locationAdded,postNewLocation})(NewLocationForm)
-)
+
+
+
+
+export default connect(mapStateToProps,{locationAdded,postNewLocation})(NewLocationForm)

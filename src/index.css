@@ -391,6 +391,10 @@ code {
   font-family: 'Permanent Marker', cursive;
 }
 
+#percentage-match {
+  color: blue;
+}
+
 /* ################ PROFILE PAGE START #################### */
 
 #profile-upper {

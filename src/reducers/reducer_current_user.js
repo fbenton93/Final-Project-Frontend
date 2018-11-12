@@ -10,6 +10,8 @@ export default function(state = defaultState,action) {
       return action.payload.data
     case 'LOGOUT_USER':
       return defaultState
+    case 'UPDATED_USER':
+      return {user: action.payload.data.user, reviews: state.reviews}
     default:
       return state
   }

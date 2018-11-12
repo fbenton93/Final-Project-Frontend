@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ReviewForm from './form_review';
+import _ from 'lodash';
 import { Modal, Button, Card } from 'semantic-ui-react';
 import {Radar, Polar} from 'react-chartjs-2';
-import Review from '../components/review_component'
+import Review from '../components/review_component';
 
 const DetailsModal = (props) => {
     const { radar1,radar2,reviews,atmospheres,roast} = props
@@ -86,12 +88,40 @@ const DetailsModal = (props) => {
       return <Review key={review.id} data={review}></Review>
     })
 
-
+    const percentageMatch = () => {
+      let prefTotal = 0
+      for (let key in props.currentUser) {
+        if (key.toString().includes('pref') && !key.toString().includes('roast')) {
+          prefTotal += props.currentUser[key]
+        }
+      }
+      let attProportions = {}
+      for (let key in props.currentUser) {
+        if (key.toString().includes('pref') && !key.toString().includes('roast')) {
+          attProportions[key] = (props.currentUser[key] / prefTotal) * 100
+        }
+      }
+      let graded = 0
+      for (let keyOne in attProportions) {
+        const strippedKey = keyOne.toString().slice(5)
+        for (let keyTwo in props.selectedLocation.averages) {
+          if (keyTwo.includes(strippedKey)) {
+            graded += attProportions[keyOne] * (props.selectedLocation.averages[keyTwo] / 10)
+          }
+        }
+      }
+      return <span style={{fontSize: '0.7em'}}><span id="percentage-match">{_.round(graded,2)}% Match</span> (Based On Your Preferences)</span>
+    }
 
 
     return (
+
       <Modal trigger={<Button id="details-button">Analysis</Button>}>
-        <Modal.Header>{props.name}</Modal.Header>
+        <Modal.Header>
+          <h1>{props.name}</h1>
+          <p>{percentageMatch()}</p>
+          <p id="address-modal">{props.selectedLocation.address_line_1} | {props.selectedLocation.address_line_2}</p>
+        </Modal.Header>
         <Modal.Content>
           <div id="scrolling-wrapper">
             <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p className="marker">submitted by (username)</p></Card>
@@ -111,5 +141,11 @@ const DetailsModal = (props) => {
     )
 }
 
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser.user,
+    selectedLocation: state.selectedLocation
+  }
+}
 
-export default DetailsModal
+export default connect(mapStateToProps)(DetailsModal)

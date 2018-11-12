@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Map,Marker,TileLayer} from 'react-leaflet'
+import {Map,Marker,TileLayer,Popup} from 'react-leaflet'
 import Preview from './preview_container'
 import NewLocationModal from './modal_new_location'
 import L from 'leaflet';
@@ -36,7 +36,11 @@ class MapContainer extends React.Component {
 
 
   render() {
-    const position = [40.710438, -73.956886]
+    const position = this.props.userCoords
+    const locationIcon = new L.Icon({
+      iconUrl: require('../images/star-raster.png'),
+      iconSize: [320,220]
+    })
     return (
               <div id="discover">
                 <div id="mapid">
@@ -45,6 +49,7 @@ class MapContainer extends React.Component {
                     url='https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                     />
+                    <Marker position={position} icon={locationIcon}><Popup>You are here.</Popup></Marker>
                     {this.renderMarkers()}
                   </Map>
                   <NewLocationModal />
@@ -58,6 +63,7 @@ class MapContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     locations: state.locations,
+    userCoords: state.userCoords
   }
 }
 
