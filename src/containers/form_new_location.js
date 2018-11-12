@@ -40,7 +40,7 @@ class NewLocationForm extends React.Component {
 
   reverseCoordinates = (coords) => {
     let latLng = new window.google.maps.LatLng(coords.lat,coords.lng);
-    let geoCoder = new window.google.maps.Geocoder();
+    const geoCoder = new window.google.maps.Geocoder();
     geoCoder.geocode({latLng}, (results,status) => {
       if (status !== window.google.maps.GeocoderStatus.OK) {
         alert(status)
