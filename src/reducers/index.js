@@ -5,6 +5,7 @@ import SelectedLocationReducer from './reducer_selected_location'
 import ProvisionalLocationReducer from './reducer_provisional_location'
 import LocationWasAddedReducer from './reducer_location_was_added'
 import UserCoords from './reducer_users_coords'
+import ValidCredentialsReducer from './reducer_valid_credentials'
 import { reducer as formReducer } from 'redux-form'
 
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   selectedLocation: SelectedLocationReducer,
   provisionalLocation: ProvisionalLocationReducer,
   locationWasAdded: LocationWasAddedReducer,
+  validCredentials: ValidCredentialsReducer,
   userCoords: UserCoords
 });
 

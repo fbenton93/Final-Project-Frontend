@@ -71,11 +71,14 @@ class ReviewForm extends React.Component {
     } else {
       if (this.props.provisionalLocation.id) {
         this.props.postNewReview(this.state.review,this.props.userId,this.props.provisionalLocation.id)
+        this.props.closeModal()
       } else {
         this.props.postNewLocation(this.state.review,this.props.userId,this.props.provisionalLocation)
+        this.props.closeModal()
       }
 
     }
+
   }
 
 
@@ -181,8 +184,8 @@ class ReviewForm extends React.Component {
   render() {
     const inputStyles= {width: "90%", height: "auto", margin: "5%"}
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Grid padded>
+      <form onSubmit={this.handleSubmit} id="review-form">
+        <Grid>
           <Grid.Column width={6}>
             <Card style={{height: "450px", width: "auto"}}>
               <Segment style={inputStyles}>
@@ -229,8 +232,10 @@ class ReviewForm extends React.Component {
           {this.renderRange("score_friendliness","How friendly was the staff?","olive")}
           {this.renderRange("score_value","Rate the value of this cafe.","yellow")}
           {this.renderRange("score_coffee_quality","Rate the overall coffee quality.","red")}
+          <Grid.Column width={12}>
+            <Button type="submit">Add New Location and Submit Review</Button>
+          </Grid.Column>
         </Grid>
-        <Button type="submit">Add New Location and Submit Review</Button>
         {this.state.errors ? <Segment inverted color="red" tertiary><ul>{this.renderErrors()}</ul></Segment> : null}
       </form>
     )

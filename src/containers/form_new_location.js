@@ -86,8 +86,10 @@ class NewLocationForm extends React.Component {
               <Input name="lineTwo" value={this.state.lineTwo} onChange={this.handleChange}></Input>
             </Segment>
           </Grid.Column>
+          <Grid.Column width={8}>
+            <Button className={this.enabled() ? "blue" : "disabled"} onClick={this.handleClick}>{message}</Button>
+          </Grid.Column>
         </Grid>
-        <Button className={this.enabled() ? "blue" : "disabled"} onClick={this.handleClick}>{message}</Button>
       </form>
     )
 

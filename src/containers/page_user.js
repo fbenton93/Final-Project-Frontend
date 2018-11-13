@@ -10,7 +10,7 @@ import reqAuth from '../HOC/wrapper_auth'
 class UserProfile extends React.Component {
 
   renderReviews = () => {
-    return this.props.user.reviews.map((review) => {
+    return this.props.user.reviews.reverse().map((review) => {
       return (
         <Card id="users-review">
           <ScoreCard review={review} username={this.props.user.user.username} />

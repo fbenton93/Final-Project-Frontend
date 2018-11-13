@@ -10,7 +10,8 @@ class ReviewModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      submitted: false
+      submitted: false,
+      open: false
     }
   }
 
@@ -22,14 +23,19 @@ class ReviewModal extends React.Component {
 
   setProvisionalLocation = () => {
     this.props.setProvisionalLocation(this.props.selectedLocation)
+    this.setState({ open: true})
+  }
+
+  closeModal = () => {
+    this.setState({ open: false })
   }
 
   render() {
     return (
-      <Modal trigger={<Button id="review-button" onClick={this.setProvisionalLocation}>Review This Shop</Button>}>
-        <Modal.Header>Write a Review</Modal.Header>
+      <Modal open={this.state.open} trigger={<Button id="review-button" onClick={this.setProvisionalLocation}>Review This Shop</Button>}>
+        <Modal.Header>Write a Review <Button style={{marginLeft: "70%"}} color="red" type="reset" onClick={this.closeModal}>Cancel</Button></Modal.Header>
         <Modal.Content>
-          {this.state.submitted ? <FormSuccess /> : <ReviewForm reRenderModal={this.reRenderModal} /> }
+          <ReviewForm closeModal={this.closeModal} />
         </Modal.Content>
       </Modal>
     )

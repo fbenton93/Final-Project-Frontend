@@ -12,6 +12,8 @@ export default function(state = defaultState,action) {
       return defaultState
     case 'UPDATED_USER':
       return {user: action.payload.data.user, reviews: state.reviews}
+    case 'REVIEW_RECEIVED':
+      return {user: state.user, reviews: [action.payload, ...state.reviews]}
     default:
       return state
   }
