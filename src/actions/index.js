@@ -9,12 +9,6 @@ const cloudKey = process.env.REACT_APP_CLOUDINARY_URL
 
 
 
-
-
-
-
-
-
 export function fetchLocations() {
   return (dispatch) => {
     return axios.get('http://localhost:3001/api/v1/locations')
@@ -61,7 +55,7 @@ export function postNewReview(values,userId,locationId) {
     axios.post('http://localhost:3001/api/v1/reviews',reviewObj)
     .then(response => {
       dispatch({type: 'REVIEW_RECEIVED', payload: response.data })
-      selectLocation(locationId)
+      dispatch(selectLocation(locationId)) // does this work?
       axios.get('http://localhost:3001/api/v1/locations')
       .then(response => {
         dispatch({
@@ -73,7 +67,6 @@ export function postNewReview(values,userId,locationId) {
     })
   }
 }
-
 
 
 export function locationAdded(locationValues) {

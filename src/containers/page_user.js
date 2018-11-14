@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import SignupForm from './form_signup'
-import ScoreCard from '../components/score_card'
+import { Card } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import SignupForm from './form_signup';
+import ScoreCard from '../components/score_card';
 
 import reqAuth from '../HOC/wrapper_auth'
 

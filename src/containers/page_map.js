@@ -19,11 +19,6 @@ class MapContainer extends React.Component {
   }
 
   renderMarkers = () => {
-    const icon = L.icon({
-      iconUrl: require('../images/coffee-cup-vector.png'),
-      iconSize: [70,70]
-    })
-
     const markerArray = this.props.locations.map((location) => {
 
       return (
