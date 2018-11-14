@@ -4,7 +4,7 @@ import { Modal, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { setProvisionalLocation } from '../actions'
 import ReviewForm from './form_review'
-import FormSuccess from '../components/form_success_graphic'
+
 
 class ReviewModal extends React.Component {
   constructor(props) {

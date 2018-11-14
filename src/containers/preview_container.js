@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewModal from './modal_review'
 import DetailsModal from './modal_details'
-import PreviewInfo from '../components/preview_component'
+import PreviewInfo from '../components/preview_info_component'
 import {connect} from 'react-redux'
 
 
