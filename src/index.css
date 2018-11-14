@@ -626,6 +626,16 @@ code {
   overflow-y: auto;
 }
 
+#tape-top {
+  position: absolute;
+  top: -1%;
+  left: -7%;
+  z-index: 999;
+  height: 150px;
+  width: 300px;
+}
+
+
 
 
     /* ########### SCORECARD END ############## */

@@ -1,12 +1,14 @@
 import React from 'react';
+import { floatsToTime } from '../helpers';
 
 const ScoreCard = (props) => {
-  // props should just be the bare review
+
   const { review } = props
-  // time needs to be converted and changed to courier font
+
   return (
     <>
     <img id="location-card" src={review.img_url} />
+    <img id="tape-top" src={require("../images/tape.png")} />
     <div id="comment-container">
       <p id="comment" className="score marker">{review.written_content}</p>
     </div>
@@ -27,25 +29,11 @@ const ScoreCard = (props) => {
   )
 }
 
-function floatsToTime(float) {
-  let halfOfDay = ''
-  if (float >= 12) {
-    halfOfDay = "PM"
-  } else {
-    halfOfDay = "AM"
-  }
-
-  let hours = Math.floor(float)
-  let minutes = ((float % 1) * 60)
-
-  if (minutes == 0) {
-    minutes = "00"
-  }
-  if (float >= 13) {
-    hours -= 12
-  }
-
-  return `${hours}:${minutes} ${halfOfDay}`
-}
 
 export default ScoreCard
+
+// SUMMARY: This card renders an image from ../images/score_card_800px and lays over
+// several values on the card using absolute positioning of each <p> and relative positioning
+// of the parent object in which this component is rendered. An additional function, floatsToTime
+// is a conversion function that takes in 0-24hr values, like 6.5 or 9.0, and converts them
+// to a a readable time

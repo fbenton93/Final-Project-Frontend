@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {Segment,Grid,Button,Input} from 'semantic-ui-react'
+import { Segment,Grid,Button,Input } from 'semantic-ui-react'
 import { locationAdded } from '../actions'
 import { postNewLocation } from '../actions'
 
-class NewLocationForm extends React.Component {
+class NewLocationForm extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -38,6 +38,9 @@ class NewLocationForm extends React.Component {
     this.props.locationAdded(this.state)
   }
 
+  // this function accepts a set of coordinates and determines the nearest address
+  // that corresponds to the given lat and lng. This has only been designed for standard,
+  // US addresses in the form: 182 Broadway, New York, NY 10016
   reverseCoordinates = (coords) => {
     let latLng = new window.google.maps.LatLng(coords.lat,coords.lng);
     const geoCoder = new window.google.maps.Geocoder();
@@ -63,9 +66,9 @@ class NewLocationForm extends React.Component {
     return (
       <form>
         <Grid padded>
-          <Grid.Column width={16}>
+          <Grid.Column width={8}>
             <Segment>
-              <h3>Enter Shop Name (i.e. "Midtown Cafe")</h3>
+              <h3>Enter Shop Name (e.g. "Midtown Cafe")</h3>
               <Input name="name" value={this.state.name} onChange={this.handleChange}></Input>
             </Segment>
           </Grid.Column>
@@ -76,13 +79,13 @@ class NewLocationForm extends React.Component {
           </Grid.Column>
           <Grid.Column width={8}>
             <Segment>
-              <h3>Enter Street Address (i.e. 137 E 47th St.)</h3>
+              <h3>Enter Street Address (e.g. 137 E 47th St.)</h3>
               <Input name="lineOne" value={this.state.lineOne} onChange={this.handleChange}></Input>
             </Segment>
           </Grid.Column>
           <Grid.Column width={8}>
             <Segment>
-              <h3>Enter City/State/ZIP</h3>
+              <h3>Enter City, State ZIP </h3>
               <Input name="lineTwo" value={this.state.lineTwo} onChange={this.handleChange}></Input>
             </Segment>
           </Grid.Column>

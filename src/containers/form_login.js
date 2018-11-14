@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
       [e.target.name]: e.target.value
     })
   }
-s
+
 
 
   render() {

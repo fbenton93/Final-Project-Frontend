@@ -1,8 +1,8 @@
-import React from 'react';
-import {HorizontalBar} from 'react-chartjs-2'
-import {Segment} from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { HorizontalBar } from 'react-chartjs-2'
+import { Segment } from 'semantic-ui-react'
 
-export default class Review extends React.Component {
+export default class Review extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,7 +28,8 @@ export default class Review extends React.Component {
           borderWith: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
-          data: [review.score_busyness,
+          data: [
+                review.score_busyness,
                 review.score_ambiance,
                 review.score_table_space,
                 review.score_noise_level,
@@ -44,8 +45,7 @@ export default class Review extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-    const {data} = this.props
+    const { data } = this.props
     return (
       <Segment vertical onClick={this.handleClick}>
         <h4>{data.title}</h4>
@@ -55,3 +55,7 @@ export default class Review extends React.Component {
     )
   }
 }
+
+// SUMMARY: This component is rendered on details modal. It receives its props from
+// ../containers/modal_details. It employs chartJS to visualize individual reviews
+// displayed onClick

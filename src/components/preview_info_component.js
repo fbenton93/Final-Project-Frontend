@@ -16,3 +16,7 @@ const PreviewInfo = (props) => {
 }
 
 export default PreviewInfo
+
+// SUMMARY: This info box is rendered on the discover/home page. It provides a
+// small glimpse into the location, providing an image, name, adress, and the lastest review
+// It receives props from ../containers/preview_container

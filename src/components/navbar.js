@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import { NavLink, withRouter } from 'react-router-dom';
 import { logoutUser } from '../actions/user'
@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 
 
-class NavBar extends React.Component {
+class NavBar extends Component {
 
   handleLogout = (event) => {
     this.props.logoutUser();
@@ -38,7 +38,7 @@ class NavBar extends React.Component {
 
 function mapStateToProps(state) {
   return (
-    {currentUser: state.currentUser}
+    { currentUser: state.currentUser }
   )
 }
 

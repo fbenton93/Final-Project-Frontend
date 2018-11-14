@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Segment,Grid,Button,Input,TextArea,Card} from 'semantic-ui-react';
 import {Slider} from 'react-semantic-ui-range';
 import { postNewLocation,fetchLocations, postNewReview } from '../actions';
+import { floatsToTime } from '../helpers';
 import axios from 'axios'
 
 
@@ -101,6 +102,8 @@ class ReviewForm extends React.Component {
       <Grid.Column width={6}>
         <Segment>
           <label>{label}</label>
+          <br />
+          <p>(Current Val: {this.state.review[name]})</p>
           <Slider color={color} settings={settings} />
         </Segment>
       </Grid.Column>
@@ -154,7 +157,7 @@ class ReviewForm extends React.Component {
   }
 
 
-
+  // renders into a <ul> if any of the basic validations fail
   renderErrors = () => {
     let errors = [];
     if (this.state.review.title.length < 4) {
@@ -241,30 +244,6 @@ class ReviewForm extends React.Component {
     )
   }
 }
-
-
-function floatsToTime(float) {
-  let halfOfDay = ''
-  if (float >= 12) {
-    halfOfDay = "PM"
-  } else {
-    halfOfDay = "AM"
-  }
-
-  let hours = Math.floor(float)
-  let minutes = ((float % 1) * 60)
-
-  if (minutes == 0) {
-    minutes = "00"
-  }
-  if (float >= 13) {
-    hours -= 12
-  }
-
-  return `${hours}:${minutes} ${halfOfDay}`
-}
-
-
 
 function mapStateToProps(state) {
   return {
