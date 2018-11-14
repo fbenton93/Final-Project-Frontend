@@ -358,6 +358,35 @@ code {
 
 /* ########## DISCOVER/HOME PAGE END ########### */
 
+/* ########### AROUND ME PAGE BEING ########## */
+
+#five-grid {
+  margin-left: 20%;
+}
+
+#five-grid:first-child {
+  margin-top: 5%
+}
+
+#five-grid .segment {
+  width: 50%;
+  margin: 0% 25%;
+}
+
+#five-img {
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+#five-details {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 15px;
+}
+
+/* ########### AROUND ME PAGE END ########### */
+
 #scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;

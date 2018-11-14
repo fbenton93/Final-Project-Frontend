@@ -7,6 +7,7 @@ import SignupPage from './containers/page_signup'
 import LoginPage from './containers/page_login'
 import MapContainer from './containers/page_map';
 import UserProfile from './containers/page_user'
+import AroundMe from './containers/page_around_me'
 import ErrorPage from './components/page_not_found'
 import NavBar from './components/navbar'
 
@@ -22,6 +23,7 @@ const App = props => {
         <Route path="/user" component={UserProfile} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
+        <Route path="/around-me" component={AroundMe} />
         <Route component={ErrorPage} />
       </Switch>
     </div>

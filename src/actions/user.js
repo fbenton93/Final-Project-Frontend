@@ -6,11 +6,16 @@ const baseURL = 'http://localhost:3001/api/v1'
 // will run on every mount; collects the users current location. This is used
 // to set the map center and to load a location for posting new locations
 export function setUserCoords(lat,lng) {
-    const coords = {lat,lng}
-    return { type: 'LOCATION_ACQUIRED',
-          payload: coords
-        }
+  const coords = {lat,lng}
+  return (dispatch) => {
+    dispatch({type: 'LOCATION_ACQUIRED', payload: coords})
+    return axios.post(`${baseURL}/first-five`, { location: {...coords}})
+    .then(response => {
+      return dispatch({type: 'FIRST_FIVE', payload: response.data.locations})
+    })
+  }
 }
+
 
 // posts a user to the backend and sets them as the currentUser in the front end
 export function postNewUser(userData) {

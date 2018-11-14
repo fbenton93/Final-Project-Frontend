@@ -15,9 +15,10 @@ class NavBar extends Component {
   renderDropdown = () => {
     const userName = this.props.currentUser.user.username
     return (
-      <Dropdown id="dropdown" text={userName}>
+      <Dropdown id="dropdown" direction="left" text={userName}>
         <Dropdown.Menu>
           <Dropdown.Item as={NavLink} to="/" text="Discover" />
+          <Dropdown.Item as={NavLink} to="/around-me" text="What's Around Me?" />
           <Dropdown.Item as={NavLink} to="/user" text="Profile" />
           <Dropdown.Divider />
           <Dropdown.Item as={NavLink} to="/login" onClick={this.handleLogout} text="Logout" />

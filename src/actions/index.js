@@ -19,6 +19,7 @@ export function fetchLocations() {
   }
 }
 
+
 // pulls a single location selected off of the map via a marker-click
 export function selectLocation(id) {
   return (dispatch) => {
