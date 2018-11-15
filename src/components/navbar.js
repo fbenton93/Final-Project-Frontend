@@ -14,11 +14,12 @@ class NavBar extends Component {
 
   renderDropdown = () => {
     const userName = this.props.currentUser.user.username
+    const locationsLoaded = !(this.props.nearbyLocations.length < 1)
     return (
       <Dropdown id="dropdown" direction="left" text={userName}>
         <Dropdown.Menu>
           <Dropdown.Item as={NavLink} to="/" text="Discover" />
-          <Dropdown.Item as={NavLink} to="/around-me" text="What's Around Me?" />
+          { locationsLoaded ? <Dropdown.Item as={NavLink} to="/around-me" text="What's Around Me?" /> : null}
           <Dropdown.Item as={NavLink} to="/user" text="Profile" />
           <Dropdown.Divider />
           <Dropdown.Item as={NavLink} to="/login" onClick={this.handleLogout} text="Logout" />
@@ -38,9 +39,11 @@ class NavBar extends Component {
 }
 
 function mapStateToProps(state) {
-  return (
-    { currentUser: state.currentUser }
-  )
+  return ({
+    currentUser: state.currentUser,
+    nearbyLocations: state.nearbyLocations
+  })
+
 }
 
 export default connect(mapStateToProps,{logoutUser})(NavBar)

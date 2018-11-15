@@ -56,6 +56,11 @@ code {
   padding-left: 1%;
 }
 
+.ui.vertical.segment:hover {
+  color: orange;
+  cursor: pointer;
+}
+
 /* ############### UNIVERSAL END ################ */
 
 
@@ -262,6 +267,7 @@ code {
 }
 
 
+
 #preview {
   position: relative;
   height: 98%;
@@ -369,13 +375,14 @@ code {
 }
 
 #five-grid .segment {
-  width: 50%;
-  margin: 0% 25%;
+  width: 60%;
+  margin: 0% 20%;
 }
 
 #five-img {
   height: 200px;
   width: 200px;
+  border-radius: 5px;
   display: inline-block;
 }
 
@@ -475,8 +482,11 @@ code {
 
 .img-container img {
   display: block;
+  height: 100%;
+  width: 100%;
   max-width: 100%;
   max-height: 100%;
+  object-fit: cover;
 }
 
 #success-img {
