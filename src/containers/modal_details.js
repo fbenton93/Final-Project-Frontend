@@ -124,7 +124,6 @@ const DetailsModal = (props) => {
         </Modal.Header>
         <Modal.Content>
           <div id="scrolling-wrapper">
-            <Card><img src="https://i.imgur.com/hG2dHwA.jpg" /><p className="marker">submitted by (username)</p></Card>
             {locationImages}
           </div>
         </Modal.Content>

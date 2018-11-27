@@ -214,7 +214,7 @@ class ReviewForm extends React.Component {
           </Grid.Column>
           <Grid.Column width={6}>
             <Card style={{height: "450px", width: "auto"}}>
-              <h1>{this.state.review.img_url == '' ? 'Upload an Image' : "Image Uploaded!" }</h1>
+              <h1 style={{margin: '10px 5px'}}>{this.state.review.img_url == '' ? 'Upload an Image' : "Image Uploaded!" }</h1>
               {this.state.review.img_url !== '' ? <img src={this.state.review.img_url} /> : null}
               <Input style={inputStyles} type="file" name="review-pic" accept="image/*" onChange={this.handleFileChange} />
               <Button style={{width: "30%", margin: "5%"}} primary onClick={this.handleUpload}>Upload</Button>

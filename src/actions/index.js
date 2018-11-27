@@ -42,7 +42,6 @@ export function postNewLocation(values,userId,provisionalLocation) {
       .then(newLocation => {
         return axios.post(`${baseURL}/reviews`, {review: {...values, location_id: newLocation.data.id, user_id: userId}})
         .then(response => {
-          dispatch({type: 'REVIEW_RECEIVED', payload: response.data })
           return axios.get(`${baseURL}/locations`)
           .then(response => {
             dispatch({type: 'LOCATIONS_LOADED',payload: response.data.locations})

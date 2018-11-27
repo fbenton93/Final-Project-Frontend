@@ -366,8 +366,19 @@ code {
 
 /* ########### AROUND ME PAGE BEING ########## */
 
+#around-me-page {
+  height: 100%;
+  width: 100%;
+  background-image: url("./images/hans-ripa-688800-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: scroll;
+}
+
 #five-grid {
   margin-left: 20%;
+  z-index: 99;
 }
 
 #five-grid:first-child {

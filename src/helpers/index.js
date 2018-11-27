@@ -20,3 +20,8 @@ export function floatsToTime(float) {
 
   return `${hours}:${minutes} ${halfOfDay}`
 }
+
+export function linkifyGoogle(addressOne,addressTwo) {
+  const address = `${addressOne.split(' ').join('+')}+${addressTwo.split(' ').join('+')}`
+  return `https://www.google.com/maps/place/${address}`
+}
