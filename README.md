@@ -1,17 +1,30 @@
-This is a generic framework generate by 'create-react-app'.
+Frontend Technologies: 
+- Axios
+- Cloudinary-React
+- Google Maps API
+- Leaflet
+- Lodash
+- React-ChartJS-2
+- Redux
+- Redux-Thunk
+- Semantic-UI-React
 
-The following dependencies have been included:
-- 'redux'
-- 'react-redux'
-- 'react-router'
-- 'react-router-dom'
-- 'redux-form'
-- 'redux-promise'
-  - designed as a gatekeeper for asynchronous requests
-- 'lodash'
-  - multipurpose tool
-- 'axios'
-  - can be used in place of fetch to make requests
+Backend Technologies: 
+- Geokit-Rails
+- JWT
+- Serializer
 
-Actions, Components, Containers, and Reducers have been wired up to create a functioning
-redux store.
+App Summary:
+
+Bean There? is a location-based review platform for coffee shops. 
+A user can:
+1. Navigate to different shops using a Leaflet map
+2. Preview a location by selecting a marker
+3. Review detailed analysis of each location, visualized by ChartJS
+4. Read individual reviews of a location
+5. Add a new location
+6. Add a new review to an existing or new location
+7. Review their old reviews in their profile
+8. Update preferences to receive a different "match percentage" rendered in the analysis
+
+
